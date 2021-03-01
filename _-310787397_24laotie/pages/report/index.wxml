@@ -1,0 +1,101 @@
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorMsg}}</view>
+        <form bindsubmit="formSubmit">
+            <view class="weui-cells__title">举报类型</view>
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">类型</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <radio-group class="radio-group  weui-check__label" name="typesway">
+                            <view class="radio columnradio" wx:for="{{typesway}}" wx:key="value">
+                                <radio checked="{{item.checked}}" value="{{item.name}}"></radio>
+                                <text>{{item.value}}</text>
+                            </view>
+                        </radio-group>
+                    </view>
+                </view>
+            </view>
+            <view class="weui-cells__title">其他信息</view>
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell">
+                    <view class="weui-cell__bd" style="height: 120rpx;">
+                        <input maxlength="20" name="remark" placeholder="更多情况,请输入说明" type="text"></input>
+                    </view>
+                </view>
+            </view>
+            <view class="weui-btn-area">
+                <button class="weui-btn" formType="submit" type="primary">确定</button>
+            </view>
+        </form>
+    </view>
+    <view bindtap="departOpenMode" capture-catch:touchstart="departOpenMode" class="dialog-mask " style="z-index:11;visibility:{{departCondition|destCondition|startTimeCond?'visible':'hidden'}};"></view>
+    <view class="picker_view_city" wx:if="{{departCondition}}">
+        <picker-view animation="{{animationAddressMenu}}" bindchange="bindDepartChangeCityInfo" indicatorStyle="height: 50px;" style="width: 100%; z-index:11; height: 300px;background:#fff;" value="{{departValue}}">
+            <view class="cityheader">
+                <view bindtap="departOpen" class="city-cancel" data-id="cancle">取消</view>
+                <view bindtap="departOpen" class="city-true" data-id="ok">确定</view>
+            </view>
+            <picker-view-column>
+                <view class="picker_item_city" style="line-height: 50px;padding-left:10px;" wx:for="{{departProvinces}}" wx:key="item">{{item}}</view>
+            </picker-view-column>
+            <picker-view-column>
+                <view class="picker_item_city" style="line-height: 50px;padding-left:10px;" wx:for="{{departCitys}}" wx:key="item">{{item}}</view>
+            </picker-view-column>
+            <picker-view-column>
+                <view class="picker_item_city" style="line-height: 50px;padding-left:10px;" wx:for="{{departCountys}}" wx:key="item">{{item}}</view>
+            </picker-view-column>
+        </picker-view>
+    </view>
+    <view class="picker_view_city" wx:if="{{destCondition}}">
+        <picker-view bindchange="bindDestChangeCityInfo" indicatorStyle="height: 50px;" style="width: 100%; height: 300px;background:#fff" value="{{destValue}}">
+            <view class="cityheader">
+                <view bindtap="destOpen" class="city-cancel" data-id="cancle">取消</view>
+                <view bindtap="destOpen" class="city-true" data-id="ok">确定</view>
+            </view>
+            <picker-view-column>
+                <view class="picker_item_city" style="line-height: 50px;padding-left:10px;" wx:for="{{destProvinces}}" wx:key="item">{{item}}</view>
+            </picker-view-column>
+            <picker-view-column>
+                <view class="picker_item_city" style="line-height: 50px;padding-left:10px;" wx:for="{{destCitys}}" wx:key="item">{{item}}</view>
+            </picker-view-column>
+            <picker-view-column>
+                <view class="picker_item_city" style="line-height: 50px;padding-left:10px;" wx:for="{{destCountys}}" wx:key="item">{{item}}</view>
+            </picker-view-column>
+        </picker-view>
+    </view>
+    <view class="picker_view_city" wx:if="{{startTimeCond}}">
+        <picker-view bindchange="bindsStartTime" indicatorStyle="height: 50px;" style="width: 100%;height: 300px;background:#fff;" value="{{startTimeValues}}">
+            <view class="cityheader">
+                <view bindtap="startTimeOpen" class="city-true" id="startTimeTure">确定</view>
+            </view>
+            <picker-view-column style="width:500px;">
+                <view class="picker_item_city" style="line-height: 50px;padding-left:10px;color:#000;font-size:28rpx;" wx:for="{{dayInfos}}" wx:key="item">{{item}}</view>
+            </picker-view-column>
+            <picker-view-column>
+                <view class="picker_item_city" style="line-height: 50px;padding-left:5px;color:#000;font-size:28rpx;" wx:for="{{hourInfos}}" wx:key="item">{{item}}点</view>
+            </picker-view-column>
+            <picker-view-column>
+                <view class="picker_item_city" style="line-height: 50px;padding-left:5px;color:#000;font-size:28rpx;" wx:for="{{minutInfos}}" wx:key="item">{{item}}分</view>
+            </picker-view-column>
+        </picker-view>
+    </view>
+    <view class="picker_view_city" wx:if="{{endTimeCond}}">
+        <picker-view bindchange="bindsEndTime" indicatorStyle="height: 50px;" style="width: 100%;height: 300px;background:#fff;" value="{{endTimeValues}}">
+            <view class="cityheader">
+                <view bindtap="endTimeOpen" class="city-true" id="endTimeTure">确定</view>
+            </view>
+            <picker-view-column style="width:500px;">
+                <view class="picker_item_city" style="line-height: 50px;padding-left:10px;color:#000;font-size:28rpx;" wx:for="{{dayInfos}}" wx:key="item">{{item}}</view>
+            </picker-view-column>
+            <picker-view-column>
+                <view class="picker_item_city" style="line-height: 50px;padding-left:5px;color:#000;font-size:28rpx;" wx:for="{{hourInfos}}" wx:key="item">{{item}}点</view>
+            </picker-view-column>
+            <picker-view-column>
+                <view class="picker_item_city" style="line-height: 50px;padding-left:5px;color:#000;font-size:28rpx;" wx:for="{{minutInfos}}" wx:key="item">{{item}}分</view>
+            </picker-view-column>
+        </picker-view>
+    </view>
+</view>

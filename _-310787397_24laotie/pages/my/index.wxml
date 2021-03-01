@@ -1,0 +1,55 @@
+<view class="page">
+    <view class="page__hd">
+        <view class="head">
+            <view>
+                <navigator url="/pages/my/info">
+                    <image src="{{userInfo.avatarUrl}}"></image>
+                </navigator>
+            </view>
+            <view>
+                <text style="color:white;">{{userInfo.nickName}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="page__bd">
+        <view class="list">
+            <view class="page__bd">
+                <view class="weui-cells weui-cells_after-title">
+                    <navigator class="weui-cell weui-cell_access" hoverClass="weui-cell_active" url="/pages/my/list">
+                        <view class="weui-cell__hd">
+                            <image src="/img/edit.png"></image>
+                        </view>
+                        <view class="weui-cell__bd">发布记录</view>
+                        <view class="weui-cell__ft weui-cell__ft_in-access">{{infoCount}}</view>
+                    </navigator>
+                    <navigator class="weui-cell weui-cell_access" hoverClass="weui-cell_active" url="/pages/my/dynamic">
+                        <view class="weui-cell__hd">
+                            <image src="/img/dynamic.png"></image>
+                        </view>
+                        <view class="weui-cell__bd">圈子信息</view>
+                        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                    </navigator>
+                    <navigator class="weui-cell weui-cell_access" hoverClass="weui-cell_active" url="/pages/my/airlines">
+                        <view class="weui-cell__hd">
+                            <image src="/img/airlines.png"></image>
+                        </view>
+                        <view class="weui-cell__bd">联系客服</view>
+                        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                    </navigator>
+                    <navigator class="weui-cell weui-cell_access" hoverClass="weui-cell_active" url="/pages/msg/list?id=notice">
+                        <view class="weui-cell__hd">
+                            <image src="/img/msg_3.png"></image>
+                        </view>
+                        <view class="weui-cell__bd">系统消息</view>
+                        <view class="weui-cell__ft weui-cell__ft_in-access">
+                            <view class="weui-badge" style="margin-left: 5px;" wx:if="{{data.notice}}">{{data.notice}}</view>
+                        </view>
+                    </navigator>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="page__bd">
+        <view class="list"></view>
+    </view>
+</view>

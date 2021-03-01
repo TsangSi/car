@@ -1,0 +1,33 @@
+.page__bd {
+    background: #efefef;
+}
+
+.weui-cells__title {
+    padding-top: .3rem;
+    margin-top: 0;
+}
+
+.radio-group {
+    padding: 10px 0px!important;
+}
+
+.weui-label {
+    color: black;
+}
+
+.radio text {
+    margin: 0rpx 8rpx;
+}
+
+.radio {
+    margin-right: 12rpx;
+}
+
+.weui-btn {
+    background: #f4de3b!important;
+    color: #000!important;
+}
+
+.weui-input {
+    overflow: hidden;
+}

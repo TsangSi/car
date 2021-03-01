@@ -1,0 +1,25 @@
+<view class="page">
+    <view class="videolist">
+        <video controls danmuBtn enableDanmu bindtimeupdate="videoLoad" id="myVideo" src="{{proDetail.shop_video}}" wx:if="{{proDetail.shop_video}}"></video>
+    </view>
+    <view class="price">￥{{proDetail.shop_price}}</view>
+    <view class="title">
+        <text>{{proDetail.shop_title}}</text>
+        <navigator style="float:right;" url="/pages/ticket/buy?price={{proDetail.shop_price}}&goods={{proDetail.shop_title}}">
+            <button>购买</button>
+        </navigator>
+    </view>
+    <view class="text">
+        <text>{{proDetail.shop_text}}</text>
+    </view>
+    <view class="text">
+        <text>{{proDetail.shop_remark}}</text>
+    </view>
+    <view class="imglist">
+        <image bindtap="previeimg" data-name="{{index}}" src="{{item}}" wx:for="{{proDetail.shop_textimg}}"></image>
+    </view>
+    <view class="concatservice">
+        <image src="/img/airlines.png"></image>
+        <button bindcontact="handleContact" openType="contact">客服中心</button>
+    </view>
+</view>

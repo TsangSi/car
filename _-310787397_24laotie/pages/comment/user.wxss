@@ -1,0 +1,33 @@
+.page {
+    margin: 10rpx;
+}
+
+.weui-btn {
+    background: #8bc34a!important;
+    color: #fff!important;
+}
+
+.weui-cells::before {
+    border-top: 0!important;
+}
+
+.weui-cells {
+    margin-top: 15px;
+}
+
+.line_tips {
+    width: auto;
+    color: #7b7b7b;
+    font-size: 34rpx;
+    padding: 25rpx 50rpx 25rpx 50rpx;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow: hidden;
+}
+
+.pict {
+    margin: 40rpx auto;
+    display: block;
+}

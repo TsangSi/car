@@ -1,0 +1,84 @@
+{
+  "pages": [
+    "pages/indexs/index",
+    "pages/index/index",
+    "pages/shop/shop",
+    "pages/shop/detail",
+    "pages/shop/buy",
+    "pages/barsDynamic/detail",
+    "pages/index/barsline",
+    "pages/my/index",
+    "pages/my/info",
+    "pages/my/list",
+    "pages/my/airlines",
+    "pages/info/index",
+    "pages/info/add",
+    "pages/info/edit",
+    "pages/comment/index",
+    "pages/comment/user",
+    "pages/notice/index",
+    "pages/dynamic/index",
+    "pages/dynamic/list",
+    "pages/appointment/index",
+    "pages/index/add",
+    "pages/index/about",
+    "pages/barsDynamic/index",
+    "pages/barsDynamic/add",
+    "pages/newdetail/index",
+    "pages/my/dynamic",
+    "pages/my/about",
+    "pages/index/menulist",
+    "pages/my/carinfo",
+    "pages/report/index",
+    "pages/bars/barhistory",
+    "pages/bars/barslist",
+    "pages/bars/buyticket",
+    "pages/bars/index",
+    "pages/bars/barstips",
+    "pages/index/barsinfo",
+    "pages/barseveryday/meizhou",
+    "pages/barseveryday/barsinfo",
+    "pages/barseveryday/line"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#f0145a",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "selectedColor": "#49b152",
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/indexs/index",
+        "iconPath": "img/index1.png",
+        "selectedIconPath": "img/index2.png"
+      },
+      {
+        "pagePath": "pages/dynamic/index",
+        "text": "消息",
+        "iconPath": "img/new1.png",
+        "selectedIconPath": "img/new2.png"
+      },
+      {
+        "text": "个人中心",
+        "pagePath": "pages/my/index",
+        "iconPath": "img/me1.png",
+        "selectedIconPath": "img/me2.png"
+      }
+    ]
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wx7dc608d9c44b786d",
+    "wx5fd2a437f46141b1",
+    "wx9256a8ae1b1094f9",
+    "wxf402fa93a64f284e",
+    "wx414a5201f34d33fa",
+    "wxd6f0ef63dab223db",
+    "wxcb98cf2b481e6c31"
+  ],
+  "sitemapLocation": "sitemap.json"
+}

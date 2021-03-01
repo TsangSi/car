@@ -1,0 +1,55 @@
+<view class="page">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorMsg}}</view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">
+                <textarea autoFocus bindfocus="bindfocus" bindinput="bindinput" class="weui-textarea" placeholder="这一刻的想法..." style="height: 5.3em"></textarea>
+            </view>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">
+                <text style="color:red">*</text>手机号</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input bindinput="getPhone" class="weui-input" maxlength="11" placeholder="请输入手机号" type="number" value="{{phone}}"></input>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">类型</view>
+        </view>
+        <view class="weui-cell__bd">
+            <radio-group bindchange="selectType" class="radio-group weui-check__label" name="typesway">
+                <view class="radio columnradio" wx:for="{{typesway}}" wx:key="value">
+                    <radio checked="{{item.checked}}" value="{{item.name}}"></radio>
+                    <text>{{item.value}}</text>
+                </view>
+            </radio-group>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">备注</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input bindinput="bindremark" class="weui-input" name="remark" placeholder="更多情况,请输入说明,例如标明地区" type="text" value="{{remark}}"></input>
+        </view>
+    </view>
+    <view class="weui-cells">
+        <checkbox-group bindchange="bindAgreeChange" name="isAgree">
+            <label class="weui-agree" for="weuiAgree">
+                <view class="weui-agree__text">
+                    <checkbox checked="{{isAgree}}" class="weui-agree__checkbox" id="weuiAgree" value="agree"></checkbox>
+                    <view class="weui-agree__checkbox-icon">
+                        <icon class="weui-agree__checkbox-icon-check" size="9" type="success_no_circle" wx:if="{{isAgree}}"></icon>
+                    </view>
+              阅读并同意
+              <navigator class="weui-agree__link" url="/pages/dynamic/about">《发布声明条款》</navigator>
+                </view>
+            </label>
+        </checkbox-group>
+    </view>
+    <button bindtap="submit" class="weui-btn" type="primary">发布</button>
+</view>

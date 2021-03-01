@@ -1,0 +1,32 @@
+.list {
+    padding: 0 25rpx;
+    clear: both;
+}
+
+.list .tips {
+    font-size: 50rpx;
+    text-align: center;
+    color: #000;
+}
+
+.list .tips text {
+    color: #f00;
+}
+
+.list .item {
+    float: left;
+    width: 175rpx;
+    margin-bottom: 40rpx;
+}
+
+.list .item .img {
+    width: 150rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 30rpx;
+    text-align: center;
+    background: #eee;
+    color: #000;
+    border: 1rpx solid #ccc;
+    border-radius: 10rpx;
+}

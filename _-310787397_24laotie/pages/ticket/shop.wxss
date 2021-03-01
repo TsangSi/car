@@ -1,0 +1,25 @@
+.pages {
+    background: #f1f0f5;
+}
+
+.list {
+    overflow: hidden;
+}
+
+.list .item {
+    background: #fff;
+    width: 345rpx;
+    border-radius: 10rpx;
+    float: left;
+    margin: 20rpx 0 0 20rpx;
+}
+
+.list .item image {
+    width: 345rpx;
+    height: 250rpx;
+    border-radius: 10rpx;
+}
+
+.list .item .price {
+    color: red;
+}

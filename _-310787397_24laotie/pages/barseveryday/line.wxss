@@ -1,0 +1,17 @@
+.list {
+    padding: 0 25rpx;
+}
+
+.list .tips {
+    font-size: 50rpx;
+    text-align: center;
+    color: #000;
+}
+
+.list .tips text {
+    color: #f00;
+}
+
+.list .item {
+    margin-top: 40rpx;
+}

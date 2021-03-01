@@ -1,0 +1,38 @@
+<view class="page">
+    <ad unitId="adunit-465bf0fce9c1da06"></ad>
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorMsg}}</view>
+    <view class="page__bd">
+        <view class="weui-panel__bd">
+            <view class="null" wx:if="{{isnull}}">没有记录</view>
+            <view class="weui-media-box weui-media-box_appmsg" hoverClass="weui-cell_active" wx:if="{{!isnull}}" wx:for="{{list}}" wx:for-index="idx" wx:key="k">
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                    <view class="weui-media-box__title list_title">
+                        <view>
+                            <text class="list_start">商品名称：</text>
+                            <text class="list_over">{{item.shopName}}</text>
+                        </view>
+                    </view>
+                    <view class="weui-media-box__desc list_desc">下单时间：{{item.time}}</view>
+                    <view class="weui-media-box__desc list_desc">手机号码：{{item.userPhone}}</view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">发送地址：{{item.shopAddress}}</view>
+                    <view class="weui-media-box__desc list_desc">物流单号：<text bindtap="copyLogis" id="{{item.logisOrderNo}}">{{item.logisOrderNo}}</text>
+                    </view>
+                    <view class="weui-media-box__info">
+                        <view class="editdiv">
+                            <button catchtap="apply" class="editbtn" id="{{idx}}" type="primary">申请退款</button>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="page__bd" wx:if="{{!isnull}}">
+        <view bindtap="onReachBottom" class="weui-loadmore" wx:if="{{!nomore}}">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载</view>
+        </view>
+        <view class="weui-loadmore weui-loadmore_line" wx:if="{{nomore}}">
+            <view class="weui-loadmore__tips weui-loadmore__tips_in-line">没有更多了~</view>
+        </view>
+    </view>
+</view>

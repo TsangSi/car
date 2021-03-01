@@ -1,0 +1,15 @@
+<view class="pages">
+    <view class="list">
+        <view class="item" wx:for="{{imglist}}">
+            <navigator hoverClass="navigator-hover" url="/pages/shop/detail?id={{item.id}}">
+                <image src="{{item.shop_imgurl}}"></image>
+                <view class="text">
+                    <view class="title">{{item.shop_title}}</view>
+                    <view class="price">
+                        <text>￥</text>{{item.shop_price}}
+              </view>
+                </view>
+            </navigator>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,19 @@
+.line_tips {
+    width: auto;
+    color: #7b7b7b;
+    font-size: 34rpx;
+    padding: 25rpx 50rpx 25rpx 50rpx;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow: hidden;
+}
+
+.page {
+    padding: 30rpx 0 150rpx 0;
+}
+
+.warning {
+    color: #f00;
+}

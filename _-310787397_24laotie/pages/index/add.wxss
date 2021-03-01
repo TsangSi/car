@@ -1,0 +1,42 @@
+.page {
+    margin: 10rpx;
+}
+
+.weui-btn {
+    background: #8bc34a!important;
+    color: #fff!important;
+}
+
+.weui-cells::before {
+    border-top: 0!important;
+}
+
+.weui-cells {
+    margin-top: 15px;
+}
+
+.title {
+    background: #f8f8f8;
+    padding-left: 5rpx;
+}
+
+.weui-cell__bd .box {
+    padding: 15rpx 0;
+}
+
+.blank,.blank .picker {
+    height: 2.58em;
+    line-height: 2.58em;
+}
+
+.typelist text {
+    height: 24rpx;
+    font-size: 18rpx;
+    float: left;
+    padding: 0 6rpx;
+}
+
+.columnradio {
+    width: 50%;
+    float: left;
+}

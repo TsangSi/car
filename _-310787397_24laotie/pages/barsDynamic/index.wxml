@@ -1,0 +1,38 @@
+<view class="page">
+    <view id="main">
+        <view id="list">
+            <view class="list_item" wx:for="{{list}}" wx:for-index="idx" wx:key="l">
+                <view>
+                    <navigator url="/pages/barsDynamic/detail?id={{item.id}}">
+                        <view class="po-avt-wrap">
+                            <image class="po-avt data-avt" src="{{item.avatarUrl}}"></image>
+                        </view>
+                        <view class="po-cmt">
+                            <view class="po-hd">
+                                <view class="po-name">
+                                    <text class="data-name">{{item.type}}，</text>
+                                    <text>地区：</text>
+                                    <text class="tips">{{item.address}}</text>
+                                </view>
+                                <view class="post">
+                                    <view>{{item.content}}<text class="lookBtn" wx:if="{{item.content.length>0}}">详情</text>
+                                    </view>
+                                    <view>
+                                        <image bindtap="previeimg" class="list-img" data-name="{{idx}}" id="{{res}}" src="{{res}}" style="height: 80px;" wx:if="{{index<3}}" wx:for="{{item.img}}" wx:for-item="res" wx:key="limage"></image>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </navigator>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="add">
+        <button bindgetuserinfo="bindGetUserInfo" data-url="/pages/info/add" openType="getUserInfo" wx:if="{{canIUse}}">登录</button>
+        <image src="/img/adddy.png"></image>
+    </view>
+    <view class="comment" wx:if="{{seecomment}}">
+        <input focus autoHeight="true" bindblur="hidecomment" bindconfirm="comment" confirmType="done" cursorSpacing="10" fixed="true" placeholder="{{reply}}"></input>
+    </view>
+</view>

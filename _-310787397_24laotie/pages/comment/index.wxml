@@ -1,0 +1,13 @@
+<view class="page">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorMsg}}</view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">
+                <textarea autoFocus bindfocus="bindfocus" bindinput="bindinput" class="weui-textarea" placeholder="回复{{data.reply}}" style="height: 5.3em"></textarea>
+            </view>
+        </view>
+    </view>
+    <button bindtap="submit" class="weui-btn" type="primary">发布</button>
+    <view style="margin-top:15px"></view>
+    <ad adTheme="white" adType="video" unitId="adunit-7664494079fdba2b"></ad>
+</view>

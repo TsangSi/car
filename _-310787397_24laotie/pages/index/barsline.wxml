@@ -1,0 +1,20 @@
+<view>
+    <view>此类信息为网上提供，信息真伪请谨慎辨别</view>
+    <view class="list">
+        <view bindtap="redirectOther" class="item" id="{{item.id}}" wx:if="{{index<1}}" wx:for="{{itemList}}">
+            <view class="title">{{item.title}}</view>
+            <view class="pic">
+                <image src="{{item.picurl}}"></image>
+            </view>
+        </view>
+    </view>
+    <ad adTheme="white" adType="video" unitId="adunit-7664494079fdba2b"></ad>
+    <view class="list">
+        <view bindtap="redirectOther" class="item" id="{{item.id}}" wx:if="{{index}}" wx:for="{{itemList}}">
+            <view class="title">{{index}}.{{item.title}}</view>
+            <view class="pic">
+                <image src="{{item.picurl}}"></image>
+            </view>
+        </view>
+    </view>
+</view>

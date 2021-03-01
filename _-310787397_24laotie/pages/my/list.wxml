@@ -1,0 +1,41 @@
+<view class="page">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorMsg}}</view>
+    <view class="page__bd">
+        <view class="weui-panel__bd">
+            <view class="null" wx:if="{{isnull}}">没有记录</view>
+            <view class="weui-media-box weui-media-box_appmsg" hoverClass="weui-cell_active" wx:for="{{list}}" wx:for-index="idx" wx:key="k">
+                <view bindtap="itemClick" class="weui-media-box__bd weui-media-box__bd_in-appmsg" data-url="{{item.url}}">
+                    <view class="weui-media-box__title list_title">
+                        <view>
+                            <text class="list_start">{{item.start}}</text>
+                            <image class="to1" src="/img/to.png"></image>
+                            <text class="list_over">{{item.over}}</text>
+                        </view>
+                        <text class="list_tm">{{item.tm}}</text>
+                    </view>
+                    <view class="weui-media-box__desc list_desc">出发：{{item.date}} {{item.time}}</view>
+                    <view class="weui-media-box__info">
+                        <view class="weui-media-box__info__meta list_type_{{item.tp}}">{{item.type}}</view>
+                        <view class="weui-media-box__info__meta">
+                            <image class="list_icon" src="/img/people.png"></image>
+                            <text>{{item.surplus}}</text>
+                        </view>
+                        <view class="editdiv">
+                            <button catchtap="edit" class="editbtn" id="{{idx}}" type="primary">修改</button>
+                            <button catchtap="del" class="editbtn" id="{{idx}}" type="warn">删除</button>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="page__bd" wx:if="{{!isnull}}">
+        <view bindtap="onReachBottom" class="weui-loadmore" wx:if="{{!nomore}}">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载</view>
+        </view>
+        <view class="weui-loadmore weui-loadmore_line" wx:if="{{nomore}}">
+            <view class="weui-loadmore__tips weui-loadmore__tips_in-line">没有更多了~</view>
+        </view>
+    </view>
+</view>

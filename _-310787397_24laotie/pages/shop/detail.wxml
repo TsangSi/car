@@ -1,0 +1,68 @@
+<view class="page">
+    <view class="imglist">
+        <image bindtap="previeimg" src="{{proDetail.shop_textimg[0]}}"></image>
+        <text>点击查看</text>
+    </view>
+    <view class="prodetail">
+        <view class="title">
+            <text>{{proDetail.shop_title}}</text>
+        </view>
+        <view class="price">￥{{proDetail.shop_price}}</view>
+        <view class="tips">
+      该产品的价格和团期会实时变动，下单后需要客服进行核实
+    </view>
+    </view>
+    <view class="starttime">
+        <view class="title">出发日期</view>
+        <radio-group bindchange="radioChange" class="radio-group">
+            <radio checked="{{item.checked}}" class="radio" value="{{item}}" wx:for="{{timeArr}}" wx:key="name">
+                <text>{{item}}</text>
+            </radio>
+        </radio-group>
+    </view>
+    <view class="intro">
+        <view class="title">行程介绍</view>
+        <view class="content">
+            <view wx:for="{{intro}}">{{item}}</view>
+        </view>
+    </view>
+    <view class="cost">
+        <view class="title">费用说明</view>
+        <view class="content">
+            <view wx:for="{{cost}}">{{item}}</view>
+        </view>
+    </view>
+    <view class="reserve">
+        <view class="title">预订须知</view>
+        <view class="content">
+            <view wx:for="{{reserve}}">{{item}}</view>
+        </view>
+    </view>
+    <view class="reback">
+        <view class="title">退改政策</view>
+        <view class="content">
+            <view>
+    1、旅游者违约 旅游者在行程开始前30日以内提出解除合同的，扣除必要的费用之外需按以下标准支付违约金： 行程开始前 29 日至 15 日，支付旅游费用总额的 5%的违约金； 行程开始前 14 日至 7 日，支付旅游费用总额的 20%的违约金； 行程开始前 6 日至 4 日，支付旅游费用总额的 50%的违约金； 行程开始前 3 日至 1 日，支付旅游费用总额的 60%的违约金； 行程开始当日，支付旅游费用总额的 70%的违约金。 如按上述比例扣除的必要的费用低于实际发生的费用，旅游者按实际发生的费用支付，但最高额不应当超过旅游费用总额。
+    </view>
+            <view>
+      2、旅行社违约 旅行社在行程开始前 30 日以内提出解除合同的，或者旅游者在行程开始前 30 日以内收到旅行社不能成团通知，不同意转团、延期出行和改签线路解除合同的，旅行社向旅游者退还已收取的全部旅游费用（扣除签证／签注等费用），并按下列标准向旅游者支付违约金： 行程开始前30日至15日，支付旅游费用总额2%的违约金； 行程开始前 14 日至 7 日，支付旅游费用总额 5%的违约金； 行程开始前 6 日至 4 日，支付旅游费用总额 10%的违约金； 
+    </view>
+        </view>
+    </view>
+    <view class="navbottom">
+        <view class="phone">
+            <view catchtap="call">
+                <image src="/img/phone.png"></image>
+                <view>电话联系</view>
+            </view>
+        </view>
+        <view class="concatservice">
+            <image src="/img/airlines.png"></image>
+            <view>客服中心</view>
+            <button bindcontact="handleContact" openType="contact">客服中心</button>
+        </view>
+        <view class="onceplace">
+            <button bindtap="onceFun" style="float:right;">立即预订</button>
+        </view>
+    </view>
+</view>

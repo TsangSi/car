@@ -1,0 +1,15 @@
+<view class="page">
+    <navigator style="width:auto;height:50rpx;margin-bottom:10rpx;" url="/pages/bars/barstips">
+        <image mode="aspectFill" src="/img/ad.gif" style="width:40rpx;height:36rpx;position:relative;top:8rpx;left:16rpx;"></image>
+        <text style="padding-left:10px;font-size:30rpx;">《<text style="color:#8CB265;">用户购票须知</text>》</text>
+    </navigator>
+    <view></view>
+    <view class="inuse">--常用路线--</view>
+    <view class="list">
+        <view catchtap="sAddress" class="item" id="{{item.id}}" wx:for="{{list}}">
+            <text>{{item.depart}}</text>
+            <text class="arrow">→</text>
+            <text>{{item.dest}}</text>
+        </view>
+    </view>
+</view>

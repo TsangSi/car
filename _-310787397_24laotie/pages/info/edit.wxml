@@ -1,0 +1,132 @@
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorMsg}}</view>
+        <form bindsubmit="formSubmit">
+            <view class="weui-cells__title">确认联系人信息</view>
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">姓名</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input class="weui-input" name="name" placeholder="请输入姓名" type="text" value="{{data.name}}"></input>
+                    </view>
+                </view>
+                <view class="weui-cell weui-cell_input weui-cell_vcode">
+                    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                </view>
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">手机号</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input class="weui-input" maxlength="11" name="phone" placeholder="请输入手机号" type="number" value="{{data.phone}}"></input>
+                    </view>
+                </view>
+            </view>
+            <view class="weui-cells__title">填写拼车信息</view>
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_input StartAndStop">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">出发地</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <view class="weui-input" wx:if="{{data.departTown.length<1}}">{{data.departCity}}-{{data.departDistrict}}</view>
+                        <view class="weui-input" wx:else>{{data.departCity}}-{{data.departDistrict}}-{{data.departTown}}</view>
+                    </view>
+                </view>
+                <view class="weui-cell weui-cell_input StartAndStop">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">目的地</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <view class="weui-input stop" wx:if="{{data.destTown.length<1}}">{{data.destCity}}-{{data.destDistrict}}</view>
+                        <view class="weui-input stop" wx:else>{{data.destCity}}-{{data.destDistrict}}-{{data.destTown}}</view>
+                    </view>
+                </view>
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">出发日期</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <picker bindchange="bindDateChange" end="{{end}}" mode="date" name="date" start="{{start}}" value="{{data.date}}">
+                            <view class="weui-input">{{data.date}}</view>
+                        </picker>
+                    </view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                </view>
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">出发时间</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <picker bindchange="bindTimeChange" end="23:59" mode="time" name="time" start="00:00" value="{{data.time}}">
+                            <view class="weui-input">{{data.time}}</view>
+                        </picker>
+                    </view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                </view>
+                <view class="weui-cell weui-cell_input" wx:if="{{type==1}}">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">拼车价格</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input class="weui-input" name="price" placeholder="请填写价格,不填则为面议" value="{{data.price}}"></input>
+                    </view>
+                </view>
+                <view class="weui-cell weui-cell_input" wx:if="{{data.type==1}}">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">车型</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input class="weui-input" name="vehicle" placeholder="请填写车型" type="text" value="{{data.vehicle}}"></input>
+                    </view>
+                </view>
+                <view class="weui-cell weui-cell_input" wx:if="{{data.type==1}}">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">剩余空位</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <picker bindchange="setsurplus" mode="selector" name="surplus" range="{{Surpluss}}" value="{{data.surplus}}">
+                            <view class="weui-input">{{Surpluss[data.surplus]}}</view>
+                        </picker>
+                    </view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                </view>
+                <view class="weui-cell weui-cell_input" wx:if="{{data.type==2}}">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">乘车人数</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <picker bindchange="setsurplus" mode="selector" name="surplus" range="{{Surpluss}}" value="{{data.surplus}}">
+                            <view class="weui-input">{{Surpluss[data.surplus]}}</view>
+                        </picker>
+                    </view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                </view>
+            </view>
+            <view class="weui-cells__title">其他信息</view>
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell">
+                    <view class="weui-cell__bd">
+                        <textarea class="weui-textarea" name="remark" placeholder="更多情况,请输入说明" style="height: 3.3em" value="{{data.remark}}"></textarea>
+                    </view>
+                </view>
+            </view>
+            <checkbox-group bindchange="bindAgreeChange" name="isAgree">
+                <label class="weui-agree" for="weuiAgree">
+                    <view class="weui-agree__text">
+                        <checkbox checked="{{isAgree}}" class="weui-agree__checkbox" id="weuiAgree" value="agree"></checkbox>
+                        <view class="weui-agree__checkbox-icon">
+                            <icon class="weui-agree__checkbox-icon-check" size="9" type="success_no_circle" wx:if="{{isAgree}}"></icon>
+                        </view>
+                    阅读并同意<navigator class="weui-agree__link" url="/pages/notice/index?id=1">《免责声明》</navigator>
+                    </view>
+                </label>
+            </checkbox-group>
+            <view class="weui-btn-area">
+                <button class="weui-btn" formType="submit" type="primary">确定</button>
+            </view>
+        </form>
+    </view>
+</view>

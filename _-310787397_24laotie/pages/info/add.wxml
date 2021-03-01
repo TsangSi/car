@@ -1,0 +1,199 @@
+<view class="page__bd">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorMsg}}</view>
+    <form bindsubmit="formSubmit" reportSubmit="true">
+        <view class="weui-cells__title">确认联系人信息</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">姓名</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" maxlength="12" name="name" placeholder="请输入姓名" type="text" value="{{name}}"></input>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">手机号</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" maxlength="11" name="phone" placeholder="请输入手机号" type="number" value="{{phone}}"></input>
+                </view>
+            </view>
+        </view>
+        <view class="weui-cells__title">填写拼车信息</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">拼车类型</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <radio-group bindchange="selectType" class="radio-group weui-cell weui-check__label" name="type">
+                        <label class="radio" wx:for="{{types}}" wx:key="value">
+                            <radio checked="{{item.checked}}" value="{{item.name}}"></radio>
+                            <text>{{item.value}}</text>
+                        </label>
+                    </radio-group>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">拼车方式</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <radio-group class="radio-group weui-cell weui-check__label" name="typesway">
+                        <label class="radio" wx:for="{{typesway}}" wx:key="value">
+                            <radio checked="{{item.checked}}" value="{{item.name}}"></radio>
+                            <text>{{item.value}}</text>
+                        </label>
+                    </radio-group>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">出发地</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <view bindtap="departOpen" class="weui-input" name="city" wx:if="{{departCounty.length>0}}">{{departProvince}}-{{departCity}}-{{departCounty}}</view>
+                    <view bindtap="departOpen" class="weui-input" name="city" wx:elif="{{departCity.length>0}}">{{departProvince}}-{{departCity}}</view>
+                    <view bindtap="departOpen" class="weui-input" name="city" wx:else>{{departProvince}}</view>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">目的地</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <view bindtap="destOpen" class="weui-input" name="city" wx:if="{{destCity.length<1}}">{{destProvince}}</view>
+                    <view bindtap="destOpen" class="weui-input" name="city" wx:elif="{{destCounty.length<1}}">{{destProvince}}-{{destCity}}</view>
+                    <view bindtap="destOpen" class="weui-input" name="city" wx:else>{{destProvince}}-{{destCity}}-{{destCounty}}</view>
+                </view>
+            </view>
+            <view bindtap="startTimeOpen" class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">出发时间</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <view class="weui-input" wx:if="{{startTime==null||startTime==''}}">请选择出发时间</view>
+                    <view class="weui-input" style="color:#000;" wx:else>{{startTime}}</view>
+                </view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </view>
+            <view class="weui-cell weui-cell_input" wx:if="{{type==1}}">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">拼车价格</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" name="price" placeholder="请填写价格,不填则为面议" type="digit" value="{{price}}"></input>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input" wx:if="{{type==1}}">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">车型</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" name="vehicle" placeholder="请填写车型" type="text" value="{{vehicle}}"></input>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input" wx:if="{{type==1}}">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">剩余空位</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker bindchange="setsurplus" mode="selector" name="surplus" range="{{Surpluss}}" value="{{surplus}}">
+                        <view class="weui-input">{{Surpluss[surplus]}}</view>
+                    </picker>
+                </view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </view>
+            <view class="weui-cell weui-cell_input" wx:if="{{type==2}}">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">乘车人数</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker bindchange="setsurplus" mode="selector" name="surplus" range="{{Surpluss}}" value="{{surplus}}">
+                        <view class="weui-input">{{Surpluss[surplus]}}</view>
+                    </picker>
+                </view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </view>
+        </view>
+        <view class="weui-cells__title">其他信息</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd" style="height: 120rpx;">
+                    <input maxlength="20" name="remark" placeholder="更多情况,请输入说明" type="text"></input>
+                </view>
+            </view>
+        </view>
+        <checkbox-group bindchange="bindAgreeChange" name="isAgree">
+            <label class="weui-agree" for="weuiAgree">
+                <view class="weui-agree__text">
+                    <checkbox checked="{{isAgree}}" class="weui-agree__checkbox" id="weuiAgree" value="agree"></checkbox>
+                    <view class="weui-agree__checkbox-icon">
+                        <icon class="weui-agree__checkbox-icon-check" size="9" type="success_no_circle" wx:if="{{isAgree}}"></icon>
+                    </view>
+                    阅读并同意
+                    <navigator class="weui-agree__link" url="/pages/my/about">《免责声明》</navigator>
+                </view>
+            </label>
+        </checkbox-group>
+        <view style="color:#f00;text-align:center;font-size:30rpx;">
+            <text>温馨提示:请勿相信收取定金者</text>
+        </view>
+        <view class="weui-btn-area">
+            <button class="weui-btn" formType="submit" type="primary">确定</button>
+        </view>
+    </form>
+</view>
+<view bindtap="departOpenMode" capture-catch:touchstart="departOpenMode" class="dialog-mask " style="z-index:11;visibility:{{departCondition|destCondition|startTimeCond?'visible':'hidden'}};"></view>
+<view class="picker_view_city" wx:if="{{departCondition}}">
+    <picker-view animation="{{animationAddressMenu}}" bindchange="bindDepartChangeCityInfo" indicatorStyle="height: 50px;" style="width: 100%; z-index:11; height: 300px;background:#fff;" value="{{departValue}}">
+        <view class="cityheader">
+            <view bindtap="departOpen" class="city-cancel" data-id="cancle">取消</view>
+            <view bindtap="departOpen" class="city-true" data-id="ok">确定</view>
+        </view>
+        <picker-view-column>
+            <view class="picker_item_city" style="line-height: 50px;padding-left:10px;" wx:for="{{departProvinces}}" wx:key="item">{{item}}</view>
+        </picker-view-column>
+        <picker-view-column>
+            <view class="picker_item_city" style="line-height: 50px;padding-left:10px;" wx:for="{{departCitys}}" wx:key="item">{{item}}</view>
+        </picker-view-column>
+        <picker-view-column>
+            <view class="picker_item_city" style="line-height: 50px;padding-left:10px;" wx:for="{{departCountys}}" wx:key="item">{{item}}</view>
+        </picker-view-column>
+    </picker-view>
+</view>
+<view class="picker_view_city" wx:if="{{destCondition}}">
+    <picker-view bindchange="bindDestChangeCityInfo" indicatorStyle="height: 50px;" style="width: 100%; height: 300px;background:#fff" value="{{destValue}}">
+        <view class="cityheader">
+            <view bindtap="destOpen" class="city-cancel" data-id="cancle">取消</view>
+            <view bindtap="destOpen" class="city-true" data-id="ok">确定</view>
+        </view>
+        <picker-view-column>
+            <view class="picker_item_city" style="line-height: 50px;padding-left:10px;" wx:for="{{destProvinces}}" wx:key="item">{{item}}</view>
+        </picker-view-column>
+        <picker-view-column>
+            <view class="picker_item_city" style="line-height: 50px;padding-left:10px;" wx:for="{{destCitys}}" wx:key="item">{{item}}</view>
+        </picker-view-column>
+        <picker-view-column>
+            <view class="picker_item_city" style="line-height: 50px;padding-left:10px;" wx:for="{{destCountys}}" wx:key="item">{{item}}</view>
+        </picker-view-column>
+    </picker-view>
+</view>
+<view class="picker_view_city" wx:if="{{startTimeCond}}">
+    <picker-view bindchange="bindsStartTime" indicatorStyle="height: 50px;" style="width: 100%;height: 300px;background:#fff;" value="{{startTimeValues}}">
+        <view class="cityheader">
+            <view bindtap="startTimeOpen" class="city-cancel" id="startTimeNoLimit">不限</view>
+            <view bindtap="startTimeOpen" class="city-true" id="startTimeTure">确定</view>
+        </view>
+        <picker-view-column style="width:500px;">
+            <view class="picker_item_city" style="line-height: 50px;padding-left:10px;color:#000;font-size:28rpx;" wx:for="{{dayInfos}}" wx:key="item">{{item}}</view>
+        </picker-view-column>
+        <picker-view-column>
+            <view class="picker_item_city" style="line-height: 50px;padding-left:5px;color:#000;font-size:28rpx;" wx:for="{{hourInfos}}" wx:key="item">{{item}}点</view>
+        </picker-view-column>
+        <picker-view-column>
+            <view class="picker_item_city" style="line-height: 50px;padding-left:5px;color:#000;font-size:28rpx;" wx:for="{{minutInfos}}" wx:key="item">{{item}}分</view>
+        </picker-view-column>
+    </picker-view>
+</view>

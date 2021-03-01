@@ -1,0 +1,21 @@
+<view>
+    <view style="text-aling:center;color:#f00;padding:30rpx;font-size:30rpx;">
+        <view>若有数据错误或者对应大巴停用、请联系小编</view>
+        <view>途径站点有简化，详细请咨询司机，祝您路途愉快</view>
+    欢迎提供更多大巴名片，小编微信：wNewWorld
+   </view>
+    <view class="list">
+        <view class="tips">途径：<text>{{departAddress}}⇄{{destAddress}}</text>
+        </view>
+        <view class="item" id="{{item.id}}" wx:for="{{allAddress}}">
+            <view class="tips">车牌号：{{item.carnum}}</view>
+            <view>上午发车时间：{{item.depart}}</view>
+            <view>下午发车时间：{{item.dest}}</view>
+            <view>上午途径站点：{{item.departWay}}</view>
+            <view>下午途径站点：{{item.destWay}}</view>
+            <view>随车手机：<button catchtap="call" data-tel="{{item.carphone}}" type="primary">拨打{{item.carphone}}</button>
+            </view>
+        </view>
+        <ad adTheme="white" adType="video" unitId="adunit-7664494079fdba2b"></ad>
+    </view>
+</view>

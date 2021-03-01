@@ -1,0 +1,59 @@
+.page__bd {
+    background: #efefef;
+    font-size: 40rpx;
+}
+
+.weui-cells__title {
+    padding-top: .3rem;
+    margin-top: 0;
+}
+
+.radio-group {
+    padding: 10px 0px!important;
+}
+
+.weui-label {
+    color: black;
+}
+
+.radio text {
+    margin: 0rpx 8rpx;
+}
+
+.radio {
+    margin-right: 12rpx;
+}
+
+.weui-btn {
+    background: #8bc34a!important;
+    color: #fff!important;
+}
+
+.weui-input {
+    overflow: hidden;
+}
+
+.statement {
+    color: #333;
+    padding: 10rpx;
+}
+
+.statement text {
+    color: #f00;
+    font-size: 24rpx;
+    line-height: 30rpx;
+}
+
+.weui-cell_input .tips {
+    font-size: 24rpx;
+    color: #f00;
+}
+
+.weui-agree__link {
+    color: #f00;
+}
+
+.columnradio {
+    width: 300rpx;
+    float: left;
+}

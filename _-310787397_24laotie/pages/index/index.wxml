@@ -1,0 +1,79 @@
+<view class="page">
+    <view id="main">
+        <view class="menu">
+            <view class="menulist">
+                <view class="imgtext">
+                    <navigator hoverClass="navigator-hover" url="/pages/barseveryday/barsinfo">
+                        <view class="img">
+                            <text>巴士票</text>
+                        </view>
+                    </navigator>
+                </view>
+                <view class="imgtext" wx:for="{{menuList}}">
+                    <view>
+                        <navigator hoverClass="navigator-hover" url="/pages/index/menulist?id={{item.id}}">
+                            <view class="img">
+                                <text>{{item.imgText}}</text>
+                            </view>
+                        </navigator>
+                    </view>
+                </view>
+                <view class="imgtext">
+                    <navigator hoverClass="navigator-hover" url="/pages/indexs/index">
+                        <view class="img">
+                            <text>拼车</text>
+                        </view>
+                    </navigator>
+                </view>
+            </view>
+        </view>
+        <view id="list">
+            <view class="list_item" wx:for="{{list}}" wx:for-index="idx" wx:key="l">
+                <view>
+                    <view class="po-avt-wrap">
+                        <image class="po-avt data-avt" src="{{item.avatarUrl}}"></image>
+                    </view>
+                    <view class="po-cmt">
+                        <view class="po-hd">
+                            <view class="po-name">
+                                <text class="data-name">{{item.nickName}}</text>
+                                <view catchtap="call" class="item_bottom_right" data-tel="{{item.phone}}" wx:if="{{item.phone}}">
+                                    <image src="/img/phone.png"></image>
+                            拨打电话
+                          </view>
+                            </view>
+                            <view class="post">
+                                <view>{{item.content}}</view>
+                                <view wx:if="{{item.imgshow}}">
+                                    <image bindtap="previeimg" data-url="{{item.imgs}}" src="{{item.imgs}}"></image>
+                                </view>
+                                <view>
+                                    <image bindtap="previeimg" class="list-img" data-name="{{idx}}" id="{{res}}" src="{{res}}" style="height: 80px;" wx:for="{{item.img}}" wx:for-item="res" wx:key="limage"></image>
+                                </view>
+                            </view>
+                            <view class="time">{{item.time}}</view>
+                            <navigator url="/pages/report/index?infoid={{item.id}}&type=1&uid={{item.uid}}">
+                                <view bindtap="report" class="report">举报</view>
+                            </navigator>
+                            <image bindtap="seecomment" class="c-icon" id="{{idx}}" src="/img/c.png"></image>
+                            <text style="color:#b1b1b1;font-size:.7rem;float:right;margin-right: 20rpx;height:33rpx;line-height:33rpx;">{{item.zan}}个赞</text>
+                            <image bindtap="zan" class="c-icon" data-id="{{item.id}}" id="{{idx}}" src="/img/zan1.png" style="margin-right:10rpx;width:32rpx;height:32rpx;" wx:if="{{item.iszan==1}}"></image>
+                            <image bindtap="zan" class="c-icon" data-id="{{item.id}}" id="{{idx}}" src="/img/zan.png" style="margin-right:10rpx;width:32rpx;height:32rpx;padding:0 10rpx" wx:else></image>
+                        </view>
+                        <view class="r" wx:if="{{item.comments}}"></view>
+                        <view class="cmt-wrap">
+                            <view class="cmt-list">
+                                <view bindtap="seecomment" data-name="{{comment.nickName}}" hoverClass="comment_hover" id="{{idx}}" style="color:#000;" wx:for="{{item.comments}}" wx:for-item="comment" wx:key="com">
+                                    <text>{{comment.nickName}}<text style="color:#000;margin:0px 2px;" wx:if="{{comment.reply}}">回复</text>{{comment.reply}}:</text>{{comment.content}}
+                              </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="comment" wx:if="{{seecomment}}">
+        <input focus autoHeight="true" bindblur="hidecomment" bindconfirm="comment" confirmType="done" cursorSpacing="10" fixed="true" placeholder="{{reply}}" type="text"></input>
+    </view>
+</view>

@@ -1,0 +1,21 @@
+<view>
+    <view style="text-align:center;font-size:26rpx;padding:20rpx;">欢迎提供更多大巴名片,可直接在个人中心发送给客服   
+   </view>
+    <view class="lists">
+        <view bindtap="redirectOther" class="item" id="{{item.id}}" wx:if="{{index<1}}" wx:for="{{itemList}}">
+            <view class="pic">
+                <image src="{{item.picurl}}"></image>
+            </view>
+        </view>
+    </view>
+    <view class="list">
+        <view class="tips">途径</view>
+        <view class="item" id="{{item.id}}" wx:for="{{addressList}}">
+            <navigator hoverClass="navigator-hover" url="/pages/barseveryday/meizhou?id={{index}}">
+                <view class="img">
+                    <text>{{item.value}}</text>
+                </view>
+            </navigator>
+        </view>
+    </view>
+</view>

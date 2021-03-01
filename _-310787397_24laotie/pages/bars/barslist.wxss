@@ -1,0 +1,195 @@
+.page {
+    background: #fafafa;
+}
+
+.timelist {
+    display: flex;
+}
+
+.timelist .prev,.timelist .next {
+    flex: 2;
+    color: #FF7F00;
+    font-size: 36rpx;
+    position: relative;
+}
+
+.timelist .prev {
+    padding-left: 50rpx;
+}
+
+.timelist .disBtn {
+    color: #ccc;
+}
+
+.timelist .prev.disBtn:before {
+    border-color: transparent #ccc transparent transparent;
+}
+
+.timelist .next.disBtn:before {
+    border-color: transparent transparent transparent #ccc;
+}
+
+.timelist .next {
+    text-align: right;
+    padding-right: 50rpx;
+}
+
+.timelist .prev:before {
+    width: 0;
+    height: 0;
+    border-width: 20rpx;
+    border-style: solid;
+    border-color: transparent #FF7F00 transparent transparent;
+    position: absolute;
+    content: '';
+    display: block;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.timelist .next:before {
+    width: 0;
+    height: 0;
+    border-width: 20rpx;
+    border-style: solid;
+    border-color: transparent transparent transparent #FF7F00;
+    position: absolute;
+    content: '';
+    display: block;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.timelist .date {
+    flex: 3;
+    color: #333;
+}
+
+.timelist .date .picker image {
+    width: 30rpx;
+    height: 30rpx;
+}
+
+.warning {
+    background: #eee;
+    color: #666;
+    font-size: 30rpx;
+    padding: 10rpx;
+}
+
+.info {
+    display: flex;
+    font-size: 40rpx;
+    text-align: center;
+}
+
+.info .address {
+    flex: 3;
+    text-align: left;
+}
+
+.info .time {
+    flex: 2;
+}
+
+.info .price {
+    flex: 2;
+    color: #FF7F00;
+}
+
+.item {
+    margin-bottom: 20rpx;
+    background: #fff;
+    padding: 10rpx;
+}
+
+.otherinfo {
+    border-top: 1px dashed #ccc;
+    padding: 5rpx;
+}
+
+.item .tips {
+    font-size: 24rpx;
+    color: #666;
+}
+
+.item .addresstips {
+    font-size: 36rpx;
+}
+
+.item .addresstips view {
+    position: relative;
+    padding-left: 30rpx;
+    font-size: 20rpx;
+}
+
+.item .addresstips text {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    display: block;
+    line-height: 24rpx;
+    color: #fff;
+    font-size: 16rpx;
+    width: 24rpx;
+    height: 24rpx;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.item .addresstips .depart text {
+    background: #FD9153;
+}
+
+.item .addresstips .dest text {
+    background: #179B16;
+}
+
+.item .addresstips .fontSize {
+    font-size: 20rpx;
+}
+
+.otherinfo image {
+    width: 24rpx;
+    height: 24rpx;
+}
+
+.otherinfo view {
+    display: inline-block;
+}
+
+.otherinfo .item_bottom_right {
+    border: 1px solid #ccc;
+    padding: 5rpx 10rpx;
+    font-size: 24rpx;
+}
+
+.otherinfo .buyBtn {
+    background: #FF7F00;
+    color: #fff;
+    padding: 5rpx 10rpx;
+    border: 1px solid #eee;
+    float: right;
+    border-radius: 10rpx;
+    font-size: 30rpx;
+}
+
+.otherinfo .notBuyBtn {
+    background: #eee;
+    padding: 5rpx 10rpx;
+    border: 1px solid #eee;
+    float: right;
+    border-radius: 10rpx;
+    font-size: 30rpx;
+}
+
+.section {
+    position: fixed;
+    bottom: 0;
+    height: 30vh;
+    width: 100vw;
+    background: #fff;
+}

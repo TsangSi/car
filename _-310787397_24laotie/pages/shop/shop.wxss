@@ -1,0 +1,40 @@
+.pages {
+    background: #f1f0f5;
+}
+
+.list {
+    overflow: hidden;
+}
+
+.list .item {
+    background: #fff;
+    width: 750rpx;
+    margin-bottom: 20rpx;
+    position: relative;
+}
+
+.list .item image {
+    width: 750rpx;
+    height: 350rpx;
+}
+
+.list .item .title {
+    font-size: 30rpx;
+    color: #333;
+    padding: 0 20rpx;
+}
+
+.list .item .price {
+    position: absolute;
+    right: 0;
+    top: 260rpx;
+    background: #01af63;
+    padding: 10rpx 24rpx;
+    color: #fff;
+    font-size: 30rpx;
+}
+
+.list .item .price text {
+    font-size: 22rpx;
+    padding: 0 3rpx;
+}

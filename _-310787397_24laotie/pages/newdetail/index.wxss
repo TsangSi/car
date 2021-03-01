@@ -1,0 +1,14 @@
+.art image {
+    width: 100%;
+}
+
+.art-title {
+    font-size: 40rpx;
+    color: #333;
+    text-align: center;
+    margin-top: 20rpx;
+}
+
+.art-content {
+    padding: 0 30rpx;
+}

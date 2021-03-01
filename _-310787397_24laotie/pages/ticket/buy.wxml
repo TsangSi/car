@@ -1,0 +1,21 @@
+<view class="weui-cells weui-cells_form infoDialog">
+    <view class="weui-cell">
+        <view class="weui-cell__bd">
+            <input bindinput="userName" class="weui-input" placeholder="请输入联系人" type="text" value="{{userName}}"></input>
+        </view>
+    </view>
+    <view class="weui-cell">
+        <view class="weui-cell__bd">
+            <input bindinput="userPhone" class="weui-input" maxlength="11" placeholder="请输入手机号码" type="text" value="{{userPhone}}"></input>
+        </view>
+    </view>
+    <view class="weui-cell">
+        <view class="weui-cell__bd">
+            <input bindinput="userAddress" class="weui-input" placeholder="请输入收件地址" type="text" value="{{userAddress}}"></input>
+        </view>
+    </view>
+    <view class="weui-btn-area">
+        <button bindgetuserinfo="bindGetUserInfo" openType="getUserInfo" wx:if="{{canIUse}}">授权登录</button>
+        <button bindtap="buyBtn" class="weui-btn" type="primary" wx:else>提交</button>
+    </view>
+</view>

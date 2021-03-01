@@ -1,0 +1,109 @@
+.page__bd {
+    background: #efefef;
+    font-size: 40rpx;
+}
+
+.weui-cells__title {
+    padding-top: .3rem;
+    margin-top: 0;
+}
+
+.radio-group {
+    padding: 10px 0px!important;
+}
+
+.weui-label {
+    color: black;
+}
+
+.radio text {
+    margin: 0rpx 8rpx;
+}
+
+.radio {
+    margin-right: 12rpx;
+}
+
+.weui-btn {
+    background: #FF7F00!important;
+    color: #fff;
+}
+
+.weui-input {
+    overflow: hidden;
+}
+
+.statement {
+    color: #333;
+    padding: 10rpx;
+}
+
+.statement text {
+    color: #f00;
+}
+
+.weui-cells_after-title {
+    padding: 10rpx;
+}
+
+.addresstips {
+    font-size: 36rpx;
+}
+
+.addresstips view {
+    position: relative;
+    padding-left: 30rpx;
+}
+
+.addresstips text {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    display: block;
+    line-height: 24rpx;
+    color: #fff;
+    font-size: 16rpx;
+    width: 24rpx;
+    height: 24rpx;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.addresstips .depart text {
+    background: #FD9153;
+}
+
+.addresstips .dest text {
+    background: #179B16;
+}
+
+.weui-cell_input .tips {
+    font-size: 24rpx;
+    color: #f00;
+}
+
+.weui-cell__bd {
+    display: flex;
+}
+
+.weui-cell__bd .num {
+    flex: 1;
+    height: 2.088823em;
+    margin-top: 0.5em;
+}
+
+.delTicket,.addTicket {
+    width: 48rpx;
+    height: 48rpx;
+    text-align: center;
+    padding: 5rpx 15rpx;
+    color: #fff;
+    background: #FF7F00;
+    line-height: 48rpx;
+    font-size: 30rpx;
+}
+
+.rule {
+    font-size: 24rpx;
+}

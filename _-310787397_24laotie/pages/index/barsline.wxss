@@ -1,0 +1,9 @@
+.pic image {
+    width: 750rpx;
+    height: 300rpx;
+}
+
+.title {
+    font-weight: bold;
+    color: #333;
+}

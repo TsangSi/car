@@ -1,0 +1,82 @@
+<view class="page">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorMsg}}</view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">
+                <textarea autoFocus bindfocus="bindfocus" bindinput="bindinput" class="weui-textarea" placeholder="请输入您的车队的描述" style="height: 5.3em"></textarea>
+            </view>
+        </view>
+        <view class="weui-cell__bd">
+            <view class="weui-uploader">
+                <view class="weui-uploader__bd">
+                    <view class="weui-uploader__files" id="uploaderFiles">
+                        <view bindtap="previewImage" class="weui-uploader__file" id="{{item}}" wx:for="{{files}}" wx:key="*this">
+                            <image class="weui-uploader__img" mode="aspectFill" src="{{item}}"></image>
+                        </view>
+                        <view class="weui-uploader__input-box">
+                            <view bindtap="chooseImage" class="weui-uploader__input"></view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="weui-cell__bd">
+                <text>图片建议上传320*240大小的图片,限4张</text>
+            </view>
+        </view>
+        <view class="weui-cells">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">类型</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <radio-group bindchange="selectType" class="radio-group weui-cell weui-check__label" name="type">
+                        <label class="radio" wx:for="{{types}}" wx:key="value">
+                            <radio checked="{{item.checked}}" value="{{item.value}}"></radio>
+                            <text>{{item.value}}</text>
+                        </label>
+                    </radio-group>
+                </view>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">联系人</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input bindinput="bindconcat" class="weui-input" name="concat" placeholder="填写联系人" type="text" value="{{concat}}"></input>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">
+                    <text style="color:red">*</text>手机号</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input bindinput="getPhone" class="weui-input" maxlength="11" placeholder="请输入手机号" type="number" value="{{phone}}"></input>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">地区</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input bindinput="bindremark" class="weui-input" name="remark" placeholder="填写车队的地区" type="text" value="{{remark}}"></input>
+            </view>
+        </view>
+        <view class="weui-cells">
+            <checkbox-group bindchange="bindAgreeChange" name="isAgree">
+                <label class="weui-agree" for="weuiAgree">
+                    <view class="weui-agree__text">
+                        <checkbox checked="{{isAgree}}" class="weui-agree__checkbox" id="weuiAgree" value="agree"></checkbox>
+                        <view class="weui-agree__checkbox-icon">
+                            <icon class="weui-agree__checkbox-icon-check" size="9" type="success_no_circle" wx:if="{{isAgree}}"></icon>
+                        </view>
+              阅读并同意
+              <navigator class="weui-agree__link" url="/pages/dynamic/about">《发布声明条款》</navigator>
+                    </view>
+                </label>
+            </checkbox-group>
+        </view>
+        <button bindtap="submit" class="weui-btn" type="primary">发布</button>
+    </view>
+</view>

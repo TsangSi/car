@@ -1,0 +1,6 @@
+<view class="page">
+    <view class="line_tips" style="color:#000;font-size:40rpx;line-height:52rpx;">“老铁巴士平台”是为有大巴车需求的人而建立的平台，简单高效，实惠。</view>
+    <view class="line_tips">1、平台在使用上，不需要下载软件，不需要注册账号,不用认证，打开微信就能使用。</view>
+    <view class="line_tips">2、所有用户均可自由发布信息,但不能发布贷款、黄赌毒等其它国家法律法规禁止的信息。</view>
+    <view class="line_tips">3、所有信息由用户发布,真实性需要用户自行甄别，遇虚假信息请举报。</view>
+</view>

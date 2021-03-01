@@ -1,0 +1,184 @@
+<view class="pinche">
+    <view bindtap="copyText" class="redInfo" wx:if="{{hbStatus}}">
+        {{hbmsg}} {{hbNum}}
+    </view>
+    <view class="redInfo" wx:if="{{noticeStatus}}">
+        {{ncText}}
+    </view>
+    <navigator class="notice" url="/pages/comment/user">
+        <image class="img" src="/img/ad.gif"></image> 公告 | 客家人的拼车平台《
+        <text style="color:#8CB265;">使用说明</text>》
+    </navigator>
+    <view class="navbar-box">
+        <view class="flex-box list">
+            <view bindtap="tabClick" class="flex-item {{navIndex==index?'active':''}}" id="{{index}}" wx:for="{{tabs}}" wx:key="{{index}}">
+                <image class="img" src="/img/select_normal.png" wx:if="{{index==3}}"></image>
+                {{item}}
+            </view>
+        </view>
+        <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+    </view>
+    <view class="card-box">
+        <navigator class="card" url="{{'/pages/info/index?id='+item.id}}" wx:if="{{navIndex==0?true:navIndex==item.type}}" wx:for="{{carList}}" wx:key="{{index}}">
+            <view class="person-msg clearfix">
+                <view class="avator-box">
+                    <image class="avator" src="{{item.avatarUrl}}"></image>
+                </view>
+                <view class="name-msg">
+                    <view class="clearfix">
+                        <view class="fl name">{{item.name}}</view>
+                        <view class="fr name" style="color:#e19c08" wx:if="{{item.actname}}">已认证</view>
+                        <view class="fr name" style="color:#ccc" wx:else>未认证</view>
+                    </view>
+                    <view class="clearfix">
+                        <view class="fl list_type_{{item.type}}">
+                            {{item.type==1?'车找人':'人找车'}}
+                        </view>
+                        <view class="car-name">{{item.vehicle}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="car-msg">
+                <view class="line">
+                    <image class="time-ico" src="/img/timer.png"></image>
+                    {{item.date}} {{item.time}} {{item.surplus+['座','人'][item.type-1]}}
+                </view>
+                <view class="line">
+                    <view class="point"></view>
+                    {{item.start}}
+                </view>
+                <view class="line">
+                    <view class="point t1"></view>
+                    {{item.over}}
+                </view>
+                <view class="line" wx:if="{{item.remark}}">
+                    <image class="time-ico" src="/img/remark.png"></image>
+                    {{item.remark}}
+                </view>
+            </view>
+            <view class="other-msg">
+                <view class="item_bottom_left">
+                    {{item.typesway==1?'专车接送':'顺路接送'}}
+                    正在寻找{{item.type==1?'乘客':'车主'}}
+                </view>
+                <view class="item_bottom_right" data-tel="{{item.phone}}">
+                    <image src="/img/phone.png"></image>
+                    查看
+                </view>
+            </view>
+        </navigator>
+    </view>
+    <view class="page">
+        <view class="page__hd">
+            <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorMsg}}</view>
+        </view>
+        <view class="weui-tab">
+            <view class="weui-tab__content" hidden="{{navIndex!=3}}">
+                <view class="weui-panel__bd">
+                    <view class="select_tab_title">填写需要筛选的信息</view>
+                </view>
+                <view class="select_tab_items">
+                    <view bindtap="departOpen" class="select_tab_item_tag">出发地
+                        <view class="select_tab_item_detail" wx:if="{{!start}}">请选择出发地</view>
+                        <view class="select_tab_item_detail" style="color:#000;" wx:else>{{start}}</view>
+                        <view class="weui-cell__ft_in-access select_tab_item_right_icon"></view>
+                    </view>
+                    <view bindtap="destOpen" class="select_tab_item_tag">目的地
+                        <view class="select_tab_item_detail" wx:if="{{!over}}">请选择目的地</view>
+                        <view class="select_tab_item_detail" style="color:#000;" wx:else>{{over}}</view>
+                        <view class="weui-cell__ft_in-access select_tab_item_right_icon"></view>
+                    </view>
+                    <view bindtap="startTimeOpen" class="select_tab_item_tag" style="border-style:none none none none;">出发日期
+                        <view class="select_tab_item_detail" style="margin:0 0 0 64rpx;" wx:if="{{!startTime}}">请选择出发日期</view>
+                        <view class="select_tab_item_detail select_tab_item_detail_margin_lite" style="color:#000;" wx:else>{{startTime}}</view>
+                        <view class="weui-cell__ft_in-access select_tab_item_right_icon"></view>
+                    </view>
+                </view>
+                <view bindtap="queryList" class="select_tab_ok_btn">确定</view>
+                <view bindtap="resetQryCond" class="select_tab_reset_btn">重置</view>
+                <view class="select_tab_tips">当筛选信息较少时，您可尝试更换筛选条件比如将目的地换成行程中的途径地</view>
+            </view>
+        </view>
+        <view wx:if="{{navIndex!=3}}">
+            <view class="add">
+                <button bindgetuserinfo="bindGetUserInfo" data-url="/pages/info/add" openType="getUserInfo" wx:if="{{canIUse}}">登录</button>
+                <image class="anim-send-order" src="/img/post_order.gif"></image>
+                <view class="rleaseBtn">发布</view>
+            </view>
+        </view>
+        <view class="page__bd" style="height:100%;height:auto;overflow:hidden;">
+            <view bindtap="onReachBottom" class="weui-loadmore" wx:if="{{tipsStatus}}">
+                <view class="weui-loadmore__tips">尚未登录无法查看信息，请点击下方发布按钮授权登录</view>
+            </view>
+            <view bindtap="onReachBottom" class="weui-loadmore" wx:if="{{!nomore&&navIndex!=3&&!tipsStatus}}">
+                <view class="weui-loading"></view>
+                <view class="weui-loadmore__tips">正在加载</view>
+            </view>
+            <view class="nomore" wx:if="{{nomore&&navIndex!=3}}">
+                <view style="height:{{windowHeight-100}}px;width:100%;margin-top:200rpx;" wx:if="{{navIndex==0&&list.length<1||navIndex==1&&list1.length<1||navIndex==2&&list2.length<1}}">
+                    <image src="/img/new.png" style="width:144rpx;height:144rpx;margin:0 auto;"></image>
+                    <view style="font-size:30rpx;font-weight:bold;color:#000;margin-bottom:4rpx;margin-top:16rpx;">
+                        暂时没有搜索结果
+                    </view>
+                    <view style="font-size:26rpx;color:Grey;">
+                        发布一个或换个筛选条件试试吧
+                    </view>
+                </view>
+                <view wx:else>没有更多了~</view>
+            </view>
+        </view>
+        <view bindtap="departOpenMode" capture-catch:touchstart="departOpenMode" class="dialog-mask" style="visibility:{{departCondition|destCondition|startTimeCond?'visible':'hidden'}};"></view>
+        <view class="picker_view_city" wx:if="{{departCondition}}">
+            <picker-view animation="{{animationAddressMenu}}" bindchange="bindDepartChangeCityInfo" indicatorStyle="height: 50px;" style="width: 100%; height: 300px;background:#fff;" value="{{departValue}}">
+                <view class="cityheader">
+                    <view bindtap="departOpen" class="city-cancel" id="nolimit">不限</view>
+                    <view bindtap="departOpen" class="city-true" id="sure">确定</view>
+                </view>
+                <picker-view-column></picker-view-column>
+                <picker-view-column>
+                    <view class="picker_item_city" style="line-height: 50px;padding-left:10px;" wx:for="{{departCitys}}" wx:key="item">{{item}}</view>
+                </picker-view-column>
+                <picker-view-column>
+                    <view class="picker_item_city" style="line-height: 50px;padding-left:10px;" wx:for="{{departCountys}}" wx:key="item">{{item}}</view>
+                </picker-view-column>
+                <picker-view-column></picker-view-column>
+            </picker-view>
+        </view>
+        <view class="picker_view_city" wx:if="{{destCondition}}">
+            <picker-view bindchange="bindDestChangeCityInfo" indicatorStyle="height: 50px;" style="width: 100%; height: 300px;background:#fff" value="{{destValue}}">
+                <view class="cityheader">
+                    <view bindtap="destOpen" class="city-cancel" id="destnolimit">不限</view>
+                    <view bindtap="destOpen" class="city-true" id="destsure">确定</view>
+                </view>
+                <picker-view-column></picker-view-column>
+                <picker-view-column>
+                    <view class="picker_item_city" style="line-height: 50px;padding-left:10px;" wx:for="{{destCitys}}" wx:key="item">{{item}}</view>
+                </picker-view-column>
+                <picker-view-column>
+                    <view class="picker_item_city" style="line-height: 50px;padding-left:10px;" wx:for="{{destCountys}}" wx:key="item">{{item}}</view>
+                </picker-view-column>
+                <picker-view-column></picker-view-column>
+            </picker-view>
+        </view>
+        <view class="picker_view_city" wx:if="{{startTimeCond}}">
+            <picker-view bindchange="bindsStartTime" indicatorStyle="height: 50px;" style="width: 100%;height: 300px;background:#fff;" value="{{startTimeValues}}">
+                <view class="cityheader">
+                    <view bindtap="startTimeOpen" class="city-cancel" id="startTimeNoLimit">不限</view>
+                    <view bindtap="startTimeOpen" class="city-true" id="startTimeTure">确定</view>
+                </view>
+                <picker-view-column>
+                    <view class="picker_item_city" style="line-height: 50px;padding-left:10px;color:#000;font-size:28rpx;" wx:for="{{dayInfos}}" wx:key="item">{{item}}</view>
+                </picker-view-column>
+            </picker-view>
+        </view>
+        <view catchtouchmove="preventTouchMove" class="dialog-mask" wx:if="{{showModal}}"></view>
+        <view class="modal-dialog" style="overflow:hidden; position:fixed; top:50%; left:0;z-index:9999;background:#fff; margin:-210rpx 50rpx;border-radius:12rpx;" wx:if="{{showModal}}">
+            <view class="modal-content">
+                在微信的“发现”界面，点击最下方的“小程序”，即可再次打开拼车平台，更多详情见平台公告。
+            </view>
+            <view class="modal-footer">
+                <view bindtap="onCancel" class="btn-cancel" data-status="cancel">我知道了</view>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,24 @@
+<view class="page">
+    <view class="pageCenter">
+        <view class="msg_image">
+            <view style="position: relative;opacity:0;">
+                <contact-button class="contact" sessionFrom="weapp" size="12" style="background:#f00;position:absolute;top:0rpx;left:0rpx;" type="default-light"></contact-button>
+                <contact-button class="contact" sessionFrom="weapp" size="12" style="background:#f00;position:absolute;top:0rpx;left:30rpx;" type="default-light"></contact-button>
+                <contact-button class="contact" sessionFrom="weapp" size="12" style="background:#f00;position:absolute;top:0rpx;left:60rpx;" type="default-light"></contact-button>
+            </view>
+            <view style="position: relative;opacity:0;">
+                <contact-button class="contact" sessionFrom="weapp" size="12" style="background:#f00;position:absolute;top:30rpx;left:0rpx;" type="default-light"></contact-button>
+                <contact-button class="contact" sessionFrom="weapp" size="12" style="background:#f00;position:absolute;top:30rpx;left:30rpx;" type="default-light"></contact-button>
+                <contact-button class="contact" sessionFrom="weapp" size="12" style="background:#f00;position:absolute;top:30rpx;left:60rpx;" type="default-light"></contact-button>
+            </view>
+            <view style="position: relative;opacity:0;">
+                <contact-button class="contact" sessionFrom="weapp" size="12" style="background:#f00;position:absolute;top:60rpx;left:0rpx;" type="default-light"></contact-button>
+                <contact-button class="contact" sessionFrom="weapp" size="12" style="background:#f00;position:absolute;top:60rpx;left:30rpx;" type="default-light"></contact-button>
+                <contact-button class="contact" sessionFrom="weapp" size="12" style="background:#f00;position:absolute;top:60rpx;left:60rpx;" type="default-light"></contact-button>
+            </view>
+            <image class="msg_image" src="/img/airlines_msg.png"></image>
+        </view>
+        <view class="msg_click_tips">（点击留言）</view>
+        <view class="msg_tips">留下您的意见，建议或投诉</view>
+    </view>
+</view>

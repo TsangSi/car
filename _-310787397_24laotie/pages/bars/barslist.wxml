@@ -1,0 +1,47 @@
+<view class="page">
+    <view class="timelist">
+        <view catchtap="prevDay" class="prev {{noPrevTicket?'disBtn':''}}">前一天</view>
+        <view class="date">
+            <picker bindchange="bindDateChange" end="{{end}}" mode="date" start="{{start}}" value="{{date}}">
+                <view class="picker">
+                    <image src="/img/calendar.png"></image>
+            {{date}}
+          </view>
+            </picker>
+        </view>
+        <view catchtap="nextDay" class="next {{noNextTicket?'disBtn':''}}">后一天</view>
+    </view>
+    <view class="list">
+        <view class="item" wx:for="{{arrTime}}">
+            <view class="info">
+                <view class="address">{{infoData.depart}}-{{infoData.dest}}</view>
+                <view class="time">{{item}}</view>
+                <view class="price">￥{{price}}</view>
+            </view>
+            <view class="addresstips">
+                <view class="depart">
+                    <text>上</text>{{infoData.departAdd}}</view>
+                <view class="dest">
+                    <text>下</text>{{infoData.destAdd}}</view>
+            </view>
+            <view class="tips">请提前至少3小时预定车票,预定成功后,上车前15分钟会有工作人员联系您上车,请保持电话畅通</view>
+            <view class="otherinfo">
+                <view catchtap="call" class="item_bottom_right" data-tel="{{infoData.phone}}">
+                    <image src="/img/phone.png"></image>
+              客服
+            </view>
+                <view catchtap="buyTicket" class="buyBtn" data-time="{{item}}" wx:if="{{curtimestamp<cartimestamp[index]}}">立即预订</view>
+                <view class="notBuyBtn" wx:else>停止售票</view>
+            </view>
+        </view>
+    </view>
+    <view class="warning">
+        <text>温馨提示：</text>
+        <view>
+      1、根据相关法律规定,乘车是必须核对本人有效证件。请乘车朋友务必携带好有效证件,以免影响出行；
+    </view>
+        <view>
+      2、如遇恶劣天气或复杂交通路况，可能会导致时间延误，请乘客朋友谅解。
+    </view>
+    </view>
+</view>

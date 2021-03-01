@@ -1,0 +1,18 @@
+<view>
+    <view class="list">
+        <view class="tips">途径：<text>{{address}}</text>
+        </view>
+        <view class="item" id="{{item.id}}" wx:for="{{addressList}}">
+            <navigator hoverClass="navigator-hover" url="/pages/barseveryday/line?id={{index}}&fid={{fid}}" wx:if="{{index<7}}">
+                <view class="img">
+                    <text>{{item.value}}</text>
+                </view>
+            </navigator>
+            <navigator hoverClass="navigator-hover" url="/pages/barseveryday/barsinfo" wx:else>
+                <view class="img">
+                    <text>首页</text>
+                </view>
+            </navigator>
+        </view>
+    </view>
+</view>

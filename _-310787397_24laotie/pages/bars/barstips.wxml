@@ -1,0 +1,59 @@
+<view class="page">
+    <view class="line_tips warning">
+      发车时间及到达时间
+    </view>
+    <view class="line_tips">1: 所有车次上下车站点对应的上车时刻和行程时长，都是行程计划的预计时间</view>
+    <view class="line_tips">2: 因为行程路况变化可能存在误差，请提前20分钟候车；</view>
+    <view class="line_tips">3: 赶时间要到达目的地的旅客，请订购发车时刻较早的班次</view>
+    <view class="line_tips warning">
+      儿童票
+    </view>
+    <view class="line_tips">
+      1、0-14岁的婴儿或儿童不能单独乘车，需要至少一位成人陪同。
+    </view>
+    <view class="line_tips">
+      2、身高再1.2米(含)以下的婴儿或儿童请购买儿童票,有座位；身高超过1.2米的请购买成人票
+    </view>
+    <view class="line_tips">
+      3、请根据儿童实际身高购票,以免造成因儿童身高与所购车票不符合而无法乘车，耽误行程
+    </view>
+    <view class="line_tips warning">
+      退票及改签规则
+    </view>
+    <view class="line_tips">
+      1、发车前1个小时以上，乘客可在订单下方，自行取消订单或进行改签；
+    </view>
+    <view class="line_tips">
+      2、发车前1个小时内，不能改签不能退票，乘客可致电客服中心取消订单，登记退优惠卷，如需改乘其它班次，请重新下单
+    </view>
+    <view class="line_tips">
+      3、过了发车时间，迟到或未乘车，车票视为过期，不做任何处理；
+    </view>
+    <view class="line_tips">
+      4、款项将再3-7个工作日内返还到原来的支付账户。
+    </view>
+    <view class="line_tips warning">
+      验票及上车
+    </view>
+    <view class="line_tips">
+      1、购票成功后，凭订单页面电子车票验票上车；
+    </view>
+    <view class="line_tips">
+      2、订单详情可查询领队或司机电话，如无法查询，请提前致电客服中心查询，以免耽误行程
+    </view>
+    <view class="line_tips warning">
+      注意事项
+    </view>
+    <view class="line_tips">
+      1、旅客应按照系统提示提前20分钟候车，因旅客原因造成的损失有旅客自行承担；
+    </view>
+    <view class="line_tips">
+      2、贵重物品及相关重要证件、资料，请旅客自行妥善保管；
+    </view>
+    <view class="line_tips">
+      3、车厢为封闭性空调公共场所，严禁携带宠物、活物上车，严禁携带含有酒精或其他危险物品上车；
+    </view>
+    <view class="line_tips">
+      4、应交通部规定，02：00-05：00所有营运巴士必须停止行驶，行驶途中的巴士必须停靠服务区休息。
+    </view>
+</view>

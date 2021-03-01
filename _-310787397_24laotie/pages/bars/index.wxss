@@ -1,0 +1,29 @@
+.inuse {
+    color: #1296DB;
+    text-align: center;
+}
+
+.list .item {
+    width: 50%;
+    float: left;
+    text-align: center;
+}
+
+.list .item text {
+    padding: 0 5rpx;
+}
+
+.qh {
+    position: absolute;
+    top: 50%;
+    right: 30rpx;
+    transform: translate(0,-50%);
+    width: 100rpx;
+    height: 100rpx;
+    background: #fff;
+}
+
+.qh image {
+    width: 100rpx;
+    height: 100rpx;
+}

@@ -1,0 +1,47 @@
+<scroll-view bindscrolltolower="tobottom" scrollIntoView="{{toview}}" scrollTop="0" scrollY="true" style="height: {{height}}px">
+    <view class="page">
+        <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorMsg}}</view>
+        <view class="page__bd header">
+            <view class="head">
+                <image src="{{data.avatarUrl}}"></image>
+            </view>
+            <view class="username">
+            {{data.nickName}}
+        </view>
+            <view class="add">
+                <button openType="share" style="padding-top:11rpx;" type="primary">
+            分享</button>
+            </view>
+        </view>
+        <view class="page_tips">
+            <text>如有不实信息,请立即举报，或可在个人中心联系客服</text>
+        </view>
+        <view class="page__bd content">
+            <view class="p contact">
+                <text class="tit">联系人:</text>
+                <text>{{data.concat}}</text>
+                <view bindtap="tel" class="item_bottom_right" data-tel="{{item.phone}}" style="width:130rpx;height:50rpx;text-align:center;background:#1296DB;color:#fff;border:none;">
+                点击拨号
+            </view>
+            </view>
+        </view>
+        <view class="page__bd">
+            <view class="text">
+           {{data.content}}
+           <navigator url="/pages/report/index?infoid={{infoid}}&type=2">
+                    <view bindtap="report" class="report">举报</view>
+                </navigator>
+            </view>
+        </view>
+        <view class="page__bd">
+            <view class="imgtext">
+                <view class="title">车型展示</view>
+                <view class="imglist">
+                    <view class="item" wx:for="{{imgList}}" wx:key="limage">
+                        <image bindtap="previmg" class="list-img" id="{{index}}" src="{{item}}"></image>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</scroll-view>

@@ -1,0 +1,170 @@
+<scroll-view bindscrolltolower="tobottom" scrollIntoView="{{toview}}" scrollTop="0" scrollY="true" style="height: {{height}}px">
+    <view class="page">
+        <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorMsg}}</view>
+        <view class="page__bd header">
+            <view class="head">
+                <image src="{{data.avatarUrl}}"></image>
+            </view>
+            <view class="username">
+            {{data.nickName}}
+        </view>
+            <view class="add">
+                <button openType="share" style="padding-top:11rpx;" type="primary">
+            分享</button>
+            </view>
+        </view>
+        <view class="page_tips">
+            <text>乘坐顺风车注意事项：记下车牌,观察保险、车审年限,拒绝黑车及非法营运车辆,搭乘双方最好各自出示身份证,同时辨别是否携带本地方言</text>
+        </view>
+        <view class="page__bd content">
+            <view class="p">
+                <image class="icon icon-departure" src="/img/cle1.png"></image>
+                <text>{{data.departure}}</text>
+            </view>
+            <view class="p">
+                <image class="icon icon-departure" src="/img/cle.png"></image>
+                <text>{{data.destination}}</text>
+            </view>
+            <view class="p contact">
+                <text class="tit">联系人:</text>
+                <text>{{data.name}}</text>
+                <image class="icon icon-gender" src="/img/{{data.gender}}.png" wx:if="{{data.gender>0}}"></image>
+                <view bindtap="tel" class="item_bottom_right" data-tel="{{item.phone}}" style="width:130rpx;height:50rpx;text-align:center;background:#1296DB;color:#fff;border:none;">
+                点击拨号
+            </view>
+            </view>
+            <view class="p contact">
+                <text class="tit">认证信息:</text>
+                <text wx:if="{{data.actname}}">{{data.actname}}(仅供参考)</text>
+                <text wx:else>未认证</text>
+            </view>
+            <view class="p contact">
+                <text class="tit">出发时间:</text>
+                <text>{{data.tm}}</text>
+            </view>
+            <view class="p contact" wx:if="{{data.type==1}}">
+                <text class="tit">备注:<text style="font-size:.78rem;color:Grey;">{{data.remark?data.remark:'未填写'}}</text>
+                </text>
+            </view>
+            <view class="p contact">
+                <text class="tit" wx:if="{{data.type==1}}">剩余空位:</text>
+                <text class="tit" wx:elif="{{data.type==2}}">人数:</text>
+                <text>{{data.surplus}}</text>
+            </view>
+            <view class="p contact" wx:if="{{data.type==1}}">
+                <text class="tit">车型:</text>
+                <text>{{data.vehicle?data.vehicle:'未填写'}}</text>
+            </view>
+            <view class="p contact" wx:if="{{data.type==1}}">
+                <text class="tit">拼车价格:</text>
+                <text wx:if="{{data.price>0}}">{{data.price}}</text>
+                <text wx:else>电话联系</text>
+            </view>
+            <view class="p contact" wx:if="{{data.type!=1}}">
+                <text class="tit">备注:<text style="font-size:.78rem;color:Grey;">{{data.remark?data.remark:'未填写'}}</text>
+                </text>
+            </view>
+        </view>
+        <ad adTheme="white" adType="video" unitId="adunit-7664494079fdba2b"></ad>
+        <view id="comment_list">
+            <view class="comment_list_header">全部评论({{comnum}})</view>
+            <view class="list">
+                <view class="item" wx:for="{{comment}}" wx:for-index="idx" wx:key="k">
+                    <view class="left">
+                        <image src="{{item.avatarUrl}}"></image>
+                    </view>
+                    <view class="com_main">
+                        <view class="name">
+                        {{item.nickName}}
+                    </view>
+                        <view class="text">
+                        {{item.content}}
+                        <view>
+                                <image bindtap="previmg" data-id="{{idxx}}" data-iid="{{idx}}" mode="aspectFit" src="{{res}}" style="width:160rpx;height:160rpx;" wx:for="{{item.img}}" wx:for-index="idxx" wx:for-item="res" wx:key="i"></image>
+                            </view>
+                            <view class="reply" wx:if="{{item.reply}}">{{item.reply}}</view>
+                        </view>
+                        <view class="info">
+                            <text>{{item.time}}</text>
+                            <navigator url="/pages/comment/index?id={{data.id}}&reply={{item.nickName}}:{{item.content}}">
+                                <view class="zview">
+                                    <image src="/img/msg1.png"></image>
+                                    <text>回复</text>
+                                </view>
+                            </navigator>
+                            <view bindtap="zan" class="zview" id="{{idx}}" wx:if="{{item.iszan}}">
+                                <image src="/img/zan1.png"></image>
+                                <text>{{item.zan}}</text>
+                            </view>
+                            <view bindtap="zan" class="zview" id="{{idx}}" wx:if="{{!item.iszan}}">
+                                <image src="/img/zan.png"></image>
+                                <text>{{item.zan}}</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</scroll-view>
+<view bindtap="preventTouchMove" catchtouchmove="preventTouchMove" class="dialog-mask" wx:if="{{showModal}}"></view>
+<view class="modal-dialog1" style=" overflow:hidden;position:fixed;top:50%;left:0;z-index:9999;background:#fff;margin:-210rpx 50rpx;border-radius:12rpx;" wx:if="{{showModal}}">
+    <view class="modal-content">
+    在微信的“发现”界面，点击最下方的“小程序”，即可再次打开拼车平台，更多详情见平台公告。
+  </view>
+    <view class="modal-footer">
+        <view bindtap="onCancel" class="btn-cancel" data-status="cancel">我知道了</view>
+    </view>
+</view>
+<view bindtap="toIndex" class="back" wx:if="{{back}}">
+    <image src="/img/back.png"></image>
+</view>
+<view class="footer">
+    <navigator url="/pages/comment/index?id={{data.id}}&uid={{data.uid}}">
+        <view class="comment">发表评论,评论即时推送给发布者</view>
+    </navigator>
+    <view class="ft-icon">
+        <view bindtap="tocomment" class="tocomment">
+            <image class="msg" src="/img/msg.png"></image>
+            <text class="comnum">{{comnum}}</text>
+        </view>
+        <image bindtap="shoucang" class="shoucang" src="/img/shoucang.png" wx:if="{{!shoucang}}"></image>
+        <image bindtap="qxshoucang" class="shoucang" src="/img/shoucang1.png" wx:if="{{shoucang}}"></image>
+    </view>
+</view>
+<modal noCancel bindconfirm="modalOk" class="modal" confirmText="不了，我再看看" hidden="{{!modalFlag}}" title="申请预约">
+    <view class="dew">
+        <form bindsubmit="appointment" reportSubmit="true">
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">姓名</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input class="weui-input" name="name" placeholder="请填写姓名" value="{{userInfo.name}}"></input>
+                    </view>
+                </view>
+                <view class="weui-cell weui-cell_input weui-cell_vcode">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">手机号</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input class="weui-input" name="phone" placeholder="请输入手机号" type="number" value="{{userInfo.phone}}"></input>
+                    </view>
+                </view>
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">乘车人数</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <picker bindchange="setsurplus" mode="selector" name="surplus" range="{{Surpluss}}" value="{{surplus}}">
+                            <view class="weui-input">{{Surpluss[surplus]}}</view>
+                        </picker>
+                    </view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                </view>
+                <button class="weui-btn" formType="submit" type="primary">确定</button>
+            </view>
+        </form>
+    </view>
+</modal>

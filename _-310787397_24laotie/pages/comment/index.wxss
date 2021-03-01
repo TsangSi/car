@@ -1,0 +1,16 @@
+.page {
+    margin: 10rpx;
+}
+
+.weui-btn {
+    background: #8bc34a!important;
+    color: #fff!important;
+}
+
+.weui-cells::before {
+    border-top: 0!important;
+}
+
+.weui-cells {
+    margin-top: 15px;
+}

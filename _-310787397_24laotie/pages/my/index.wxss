@@ -1,0 +1,35 @@
+.head {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 100rpx 0rpx;
+    align-items: center;
+    justify-content: space-between;
+    background: #373834;
+}
+
+.head image {
+    width: 150rpx;
+    height: 150rpx;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+
+.list view {
+    font-size: 12pt;
+}
+
+.list .weui-cell {
+    padding: 13px!important;
+}
+
+page {
+    overflow-y: scroll!important;
+}
+
+.weui-cells_after-title .weui-cell__hd image {
+    margin-right: 5px;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+}
