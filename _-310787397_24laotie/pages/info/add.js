@@ -1,5 +1,10 @@
-var t = require("../../utils/util.js"), a = require("../../utils/citys.js"), e = (require("../../utils/JsonUtils.js"), 
-require("../../utils/base64.js")), s = getApp(), i = t.formatTime(new Date()).split(" ")[0], n = t.formatTime(new Date(new Date().getTime() + 307584e5)).split(" ")[0];
+var utils = require("../../utils/util.js")
+var a = require("../../utils/citys.js")
+var e = (require("../../utils/JsonUtils.js"),
+require("../../utils/base64.js"))
+var s = getApp();
+var i = utils.formatTime(new Date()).split(" ")[0]
+var n = utils.formatTime(new Date(new Date().getTime() + 307584e5)).split(" ")[0];
 
 Page({
     data: {
@@ -13,25 +18,28 @@ Page({
         types: [ {
             name: "1",
             value: "车找人",
-            checked: !0
+            checked: true
         }, {
             name: "2",
             value: "人找车"
         } ],
-        typesway: [ {
-            name: "1",
-            value: "专车"
-        }, {
-            name: "2",
-            value: "顺路",
-            checked: !0
-        } ],
-        Surpluss: [ "请选择", 1, 2, 3, 4, 5, 6 ],
+        typesway: [
+            {
+                name: "1",
+                value: "顺路",
+                checked: true
+            },
+            {
+                name: "2",
+                value: "专车"
+            }
+        ],
+        surPluss: [ "请选择", 1, 2, 3, 4, 5, 6 ],
         surplus: 0,
-        isAgree: !0,
+        isAgree: true,
         vehicle: "",
         departure: "出发地",
-        departCondition: !1,
+        departCondition: false,
         departProvince: "请选择出发地",
         departCity: "",
         departCounty: "",
@@ -50,19 +58,19 @@ Page({
         destCountys: [],
         destValue: [ 0, 0, 0 ],
         destValues: [ 0, 0, 0 ],
-        startTimeCond: !1,
+        startTimeCond: false,
         startTimeValues: [ 0, 0, 0 ],
         startTime: "",
         dayInfos: [],
         hourInfos: [],
         minuteInfos: [],
-        showTextAreaHolder: !0,
+        showTextAreaHolder: true,
         skVal: "",
-        price: 2,
+        price: 100,
         secondPrice: 1,
-        isPay: !1,
+        isPay: false,
         addArr: [],
-        addIsPay: !1,
+        addIsPay: false,
         items: [ {
             name: "none",
             value: "否",
@@ -257,15 +265,18 @@ Page({
         });
     },
     addInfo: function(a) {
-        t.req("/api/info/add", a, function(a) {
-            if (t.dddd(a, "infoAdd2 :"), wx.hideLoading(), 1 != a.status) return t.isError(a.msg, that), 
-            !1;
+        t.req("/api/info/add", a, (a)=> {
+            t.dddd(a, "infoAdd2 :");
+            wx.hideLoading();
+            if (1 != a.status) {
+                return t.isError(a.msg, this);
+            }
             wx.redirectTo({
                 url: "/pages/info/index?id=" + a.info
             });
             var e = getCurrentPages();
             console.log(e);
-        }, "订单发布中..", "订单发布失败,请重试.."), t.clearError(that);
+        }, "订单发布中..", "订单发布失败,请重试.."), t.clearError(this);
     },
     sexDeparture: function() {
         var t = this;
@@ -362,20 +373,52 @@ Page({
     },
     initDataInfo: function() {
         arguments.length > 0 && void 0 !== arguments[0] && arguments[0];
-        var t = new Date(), a = t.getMonth() + 1, e = t.getDate(), s = t.getHours(), i = t.getMinutes(), n = (t.getDay(), 
-        new Array("今天", "明天", "后天")), r = new Array("周日", "周一", "周二", "周三", "周四", "周五", "周六");
-        t.setDate(e + 3);
-        for (var d = "", o = 0; o < 30; o++) a = t.getMonth() + 1, e = t.getDate(), d = r[t.getDay()], 
-        n.push(a + "月" + e + "日  " + d), t.setDate(e + 1);
-        var u = [], l = [], h = 0, c = 0;
-        0 == this.data.startTimeValues[0] && 0 == this.data.startTimeValues[1] ? i < 50 ? (h = s, 
-        c = 10 * (parseInt(i / 10) + 1)) : (h = s + 1, c = 0) : (h = 0, c = 0);
-        for (o = h; o < 24; o++) u.push(o);
-        for (o = c; o < 55; ) l.push(o), o += 10;
+        var cur_date = new Date();
+        let month = cur_date.getMonth() + 1;
+        let day = cur_date.getDate();
+        let hour = cur_date.getHours();
+        let minu = cur_date.getMinutes();
+        let w_day = cur_date.getDay();
+        let wdays = new Array("今天", "明天", "后天");
+        let arr_wday = new Array("周日", "周一", "周二", "周三", "周四", "周五", "周六");
+        cur_date.setDate(w_day + 3);
+        for (let d = "", o = 0; o < 30; o++) {
+            month = cur_date.getMonth() + 1;
+            w_day = cur_date.getDate();
+            d = arr_wday[cur_date.getDay()]; 
+            wdays.push(month + "月" + w_day + "日  " + d);
+            cur_date.setDate(w_day + 1);
+        }
+        let hour_infos = [];
+        let minu_infos = [];
+        let start_h = 0;
+        let start_m = 0;
+        let first_start_time = this.data.startTimeValues[0];
+        let second_start_time = this.data.startTimeValues[1];
+        let cur_set_date = new Date(this.data.startTime);
+
+        if (0 == first_start_time && 0 == second_start_time) {
+            if (minu < 50) {
+                start_h = hour;
+                start_m = 10 * (parseInt(minu / 10) + 1);
+            } else {
+                start_h = hour + 1;
+                start_m = 0;
+            }
+        } else {
+            console.log('this.data=',this.data);
+        }
+        for (let o = start_h; o < 24; o++) {
+            hour_infos.push(o);
+        }
+        for (let o = start_m; o < 55; ) {
+            minu_infos.push(o);
+            o += 10;
+        }
         this.setData({
-            dayInfos: n,
-            hourInfos: u,
-            minutInfos: l
+            dayInfos: wdays,
+            hourInfos: hour_infos,
+            minutInfos: minu_infos
         });
     },
     bindsStartTime: function(t) {
@@ -421,18 +464,24 @@ Page({
             }
         });
     },
-    onLoad: function(e) {
-        wx.getStorage({
-            key: "sk",
-            success: function(t) {},
-            fail: function(t) {
-                s.login();
-            }
-        }), null != s.globalData.userInfo && this.setData({
-            name: "" == s.globalData.userInfo.name ? s.globalData.userInfo.nickName : s.globalData.userInfo.name,
-            phone: s.globalData.userInfo.phone,
-            vehicle: s.globalData.userInfo.vehicle
-        }), this.isVipFun();
+
+    initData: function() {
+        if (null != s.globalData.userInfo) {
+            this.setData({
+                name: s.globalData.userInfo.name || s.globalData.userInfo.nickName,
+                phone: s.globalData.userInfo.phone,
+                vehicle: s.globalData.userInfo.vehicle
+            });
+            this.isVipFun();
+        }
+        // wx.cloud.callFunction({
+        //     name: 'login',
+        //     data: {weRunData: wx.cloud.CloudID(e.detail.cloudID)}
+        //   }).then(res => {
+        //     this.setData({
+        //       mobile: res.result.weRunData.data.phoneNumber
+        //     })
+        // })
         var i = wx.createAnimation({
             duration: 500,
             transformOrigin: "50% 50%",
@@ -455,11 +504,24 @@ Page({
             destCountys: o
         }), this.setWxPayStatus();
     },
+
+    onLoad: function(e) {
+        wx.getStorage({
+            key: "sk",
+            success: (t)=> {
+                this.initData();
+            },
+            fail: (t)=> {
+                s.login(this.initData);
+            }
+        });
+        
+    },
     isVipFun: function() {
         wx.getStorage({
             key: "sk",
             success: function(a) {
-                t.req("api/info/mytime", {
+                utils.req("api/info/mytime", {
                     sk: a.data
                 }, function(t) {
                     s.d.viptime = t.viptime;
@@ -517,43 +579,55 @@ Page({
                 data_total: 1 == n.data.type ? n.data.price : n.data.secondPrice
             },
             success: function(a) {
-                i.orderNo = a.data.out_trade_no, 1 == a.data.state ? wx.requestPayment({
-                    timeStamp: a.data.timeStamp,
-                    nonceStr: a.data.nonceStr,
-                    package: a.data.package,
-                    signType: a.data.signType,
-                    paySign: a.data.paySign,
-                    topType: a.data.topType,
-                    success: function(a) {
-                        console.log(a), t.req("/api/info/add", i, function(a) {
-                            if (t.dddd(a, "infoAdd2 :"), wx.hideLoading(), 1 != a.status) return t.isError(a.msg, n), 
-                            !1;
-                            wx.redirectTo({
-                                url: "/pages/info/index?id=" + a.info
+                i.orderNo = a.data.out_trade_no;
+                console.log('a.data=', a.data);
+                if (a.data.state == 1) {
+                    wx.requestPayment({
+                        timeStamp: a.data.timeStamp,
+                        nonceStr: a.data.nonceStr,
+                        package: a.data.package,
+                        signType: a.data.signType,
+                        paySign: a.data.paySign,
+                        topType: a.data.topType,
+                        success: function(a) {
+                            console.log(a);
+                            t.req("/api/info/add", i, function(a) {
+                                t.dddd(a, "infoadd:");
+                                wx.hideLoading();
+                                if (1 != a.status) {
+                                    return t.isError(a.msg, n);
+                                }
+                                wx.redirectTo({
+                                    url: "/pages/info/index?id=" + a.info
+                                });
+                                var e = getCurrentPages();
+                                console.log(e);
+                            }, "订单发布中..", "订单发布失败,请重试.."), t.clearError(n);
+                        },
+                        fail: function(t) {
+                            wx.showToast({
+                                title: "发布失败",
+                                icon: "fail",
+                                duration: 1e3
                             });
-                            var e = getCurrentPages();
-                            console.log(e);
-                        }, "订单发布中..", "订单发布失败,请重试.."), t.clearError(n);
-                    },
-                    fail: function(t) {
-                        wx.showToast({
-                            title: "发布失败",
-                            icon: "fail",
-                            duration: 1e3
-                        });
-                    },
-                    complete: function(t) {
-                        console.log(t.errMsg);
-                    }
-                }) : 0 == a.data.state ? wx.showToast({
-                    title: a.data.Msg,
-                    icon: "fail",
-                    duration: 1e3
-                }) : wx.showToast({
-                    title: "系统繁忙，请稍后重试~",
-                    icon: "fail",
-                    duration: 1e3
-                });
+                        },
+                        complete: function(t) {
+                            console.log(t.errMsg);
+                        }
+                    })
+                } else if (0 == a.data.state) {
+                    wx.showToast({
+                        title: a.data.Msg,
+                        icon: "fail",
+                        duration: 1e3
+                    })
+                } else {
+                    wx.showToast({
+                        title: "系统繁忙，请稍后重试~",
+                        icon: "fail",
+                        duration: 1e3
+                    });
+                }
             }
         });
     }

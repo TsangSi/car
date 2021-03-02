@@ -71,14 +71,5 @@
       }
     ]
   },
-  "navigateToMiniProgramAppIdList": [
-    "wx7dc608d9c44b786d",
-    "wx5fd2a437f46141b1",
-    "wx9256a8ae1b1094f9",
-    "wxf402fa93a64f284e",
-    "wx414a5201f34d33fa",
-    "wxd6f0ef63dab223db",
-    "wxcb98cf2b481e6c31"
-  ],
   "sitemapLocation": "sitemap.json"
 }

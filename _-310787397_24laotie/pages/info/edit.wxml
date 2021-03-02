@@ -87,8 +87,8 @@
                         <view class="weui-label">剩余空位</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <picker bindchange="setsurplus" mode="selector" name="surplus" range="{{Surpluss}}" value="{{data.surplus}}">
-                            <view class="weui-input">{{Surpluss[data.surplus]}}</view>
+                        <picker bindchange="setsurplus" mode="selector" name="surplus" range="{{surPluss}}" value="{{data.surplus}}">
+                            <view class="weui-input">{{surPluss[data.surplus]}}</view>
                         </picker>
                     </view>
                     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
@@ -98,8 +98,8 @@
                         <view class="weui-label">乘车人数</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <picker bindchange="setsurplus" mode="selector" name="surplus" range="{{Surpluss}}" value="{{data.surplus}}">
-                            <view class="weui-input">{{Surpluss[data.surplus]}}</view>
+                        <picker bindchange="setsurplus" mode="selector" name="surplus" range="{{surPluss}}" value="{{data.surplus}}">
+                            <view class="weui-input">{{surPluss[data.surplus]}}</view>
                         </picker>
                     </view>
                     <view class="weui-cell__ft weui-cell__ft_in-access"></view>

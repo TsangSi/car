@@ -177,7 +177,7 @@ Page({
                     "data.price": null == e.data.price ? "面议" : e.data.price,
                     "data.gender": e.data.gender,
                     notme: !1,
-                    Surpluss: o,
+                    surPluss: o,
                     surplus: 0,
                     "data.departure": d,
                     "data.destination": r,

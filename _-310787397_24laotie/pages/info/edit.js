@@ -17,7 +17,7 @@ Page({
             name: "2",
             value: "人找车"
         } ],
-        Surpluss: [ "请选择", 1, 2, 3, 4, 5, 6 ],
+        surPluss: [ "请选择", 1, 2, 3, 4, 5, 6 ],
         surplus: 0,
         isAgree: !0,
         vehicle: "",

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50623
 File Encoding         : 65001
 
-Date: 2021-03-01 21:34:32
+Date: 2021-03-02 21:01:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,10 +21,17 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `carlist`;
 CREATE TABLE `carlist` (
   `id` int(11) NOT NULL,
-  `type` int(255) NOT NULL,
+  `type` int(11) NOT NULL,
   `time` datetime NOT NULL,
   `from` varchar(255) DEFAULT NULL,
-  `top` varchar(255) DEFAULT NULL
+  `top` varchar(255) DEFAULT NULL,
+  `num` int(11) DEFAULT '4',
+  `iphone` int(11) NOT NULL,
+  `price` decimal(10,2) DEFAULT '100.00',
+  `carname` varchar(255) DEFAULT NULL,
+  `mode` int(11) DEFAULT '1',
+  `name` varchar(255) NOT NULL,
+  `desc` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------

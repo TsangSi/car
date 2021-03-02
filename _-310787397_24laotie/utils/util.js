@@ -2,12 +2,12 @@ function e(e) {
     return (e = e.toString())[1] ? e : "0" + e;
 }
 
-function t(e, t) {
-    t.setData({
+function isError(msg, target) {
+    target.setData({
         showTopTips: !0,
-        errorMsg: e
+        errorMsg: msg
     }), setTimeout(function() {
-        t.setData({
+        target.setData({
             showTopTips: !1
         });
     }, 2e3);
@@ -67,7 +67,6 @@ module.exports = {
     trim: function(e) {
         return e.replace(/(^\s*)|(\s*$)/g, "");
     },
-    isError: t,
     clearError: n,
     getReq: function(e, t, n) {
         wx.request({

@@ -79,8 +79,21 @@ App((t = {
             success: function(a) {
                 wx.getUserInfo({
                     success: function(n) {
+                        
+                        a = n.rawData;
+                        t.setUserInfo(n.userInfo);
+                        t.setSk('sk');
+                        wx.hideLoading();
+                        wx.showToast({
+                          title: '登录成功',
+                          icon: "success",
+                          duration: 2e3
+                        });
+                        e && e();
+                        console.log('nnnnnnnnn=',n);
+                        /**
                         wx.request({
-                            url: t.serverConfig.ip_address + "/api/user/login",
+                            url: 'http://127.0.0.1/use/login/WxloginModel.php',//t.serverConfig.ip_address + "/api/user/login",
                             data: {
                                 code: a.code,
                                 encryptedData: n.encryptedData,
@@ -101,6 +114,7 @@ App((t = {
                                 wx.hideLoading();
                             }
                         });
+                        **/
                     },
                     fail: function(e) {
                         t.loginFail(), wx.hideLoading();
