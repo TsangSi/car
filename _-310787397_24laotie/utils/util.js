@@ -33,7 +33,7 @@ function o(e) {
     return e instanceof Object || e instanceof Array;
 }
 
-var i = "https://192.168.22.45/index.php/";
+var i = "https://127.0.0.1/index.php/";
 
 module.exports = {
     formatTime: function(t) {
@@ -147,5 +147,6 @@ module.exports = {
         return -1 != e.indexOf("车找人") || -1 != e.indexOf("包车") || -1 != e.indexOf("专车") || -1 != e.indexOf("顺风车") || -1 != e.indexOf("承接") || -1 != e.indexOf("天天班") ? t.type = 1 : -1 != e.indexOf("人找车") && (t.type = 2), 
         t;
     },
+    isError: isError,
     dddd: r
 };

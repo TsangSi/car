@@ -46,8 +46,8 @@ Page({
         departProvinces: [],
         departCitys: [],
         departCountys: [],
-        departValue: [ 0, 0, 0 ],
-        departValues: [ 0, 0, 0 ],
+        departValue: [ 1, 3, 2 ],
+        departValues: [ 1, 3, 2 ],
         destination: "目的地",
         destCondition: !1,
         destProvince: "请选择目的地",
@@ -56,8 +56,8 @@ Page({
         destProvinces: [],
         destCitys: [],
         destCountys: [],
-        destValue: [ 0, 0, 0 ],
-        destValues: [ 0, 0, 0 ],
+        destValue: [ 0, 0, 6 ],
+        destValues: [ 0, 0, 6 ],
         startTimeCond: false,
         startTimeValues: [ 0, 0, 0 ],
         startTime: "",
@@ -210,21 +210,22 @@ Page({
     },
     formSubmit: function(a) {
         var i = a.detail.value, n = this;
+        console.log('========i==', i);
         if (i.time = this.data.time, i.date = this.data.date, i.topType = this.data.topType, 
-        null == s.globalData.userInfo) return t.isError("需要登录才可以发单", n), void s.login();
-        if ("" == i.name) return t.isError("请输入姓名", n), !1;
-        if ("" == i.phone) return t.isError("请输入手机号码", n), !1;
-        if (!/^1[3456789]\d{9}$/.test(i.phone)) return t.isError("手机号码错误", n), !1;
-        if ("出发地" == n.data.departure) return t.isError("请选择出发地", n), !1;
-        if ("目的地" == n.data.destination) return t.isError("请选择目的地", n), !1;
-        if (!i.time || "" == i.time || "请选择时间" == i.time) return t.isError("请选择出发时间", n), 
+        null == s.globalData.userInfo) return utils.isError("需要登录才可以发单", n), void s.login();
+        if ("" == i.name) return utils.isError("请输入姓名", n), !1;
+        if ("" == i.phone) return utils.isError("请输入手机号码", n), !1;
+        if (!/^1[3456789]\d{9}$/.test(i.phone)) return utils.isError("手机号码错误", n), !1;
+        if ("出发地" == n.data.departure) return utils.isError("请选择出发地", n), !1;
+        if ("目的地" == n.data.destination) return utils.isError("请选择目的地", n), !1;
+        if (!i.time || "" == i.time || "请选择时间" == i.time) return utils.isError("请选择出发时间", n), 
         !1;
         if ("0" == i.surplus) {
             var r = new Array("", "剩余空位", "乘车人数");
-            return t.isError("请选择" + r[i.type], n), !1;
+            return utils.isError("请选择" + r[i.type], n), !1;
         }
-        if ("" == i.vehicle) return t.isError("请输入车型", n), !1;
-        if (!i.isAgree[0]) return t.isError("请阅读并同意条款", n), !1;
+        if ("" == i.vehicle) return utils.isError("请输入车型", n), !1;
+        if (!i.isAgree[0]) return utils.isError("请阅读并同意条款", n), !1;
         s.globalData.userInfo.phone || (s.globalData.userInfo.phone = i.phone), !s.globalData.userInfo.vehicle && i.vehicle && (s.globalData.userInfo.vehicle = i.vehicle), 
         wx.getStorage({
             key: "sk",
@@ -241,23 +242,35 @@ Page({
         i.name = e.encode(i.name), i.vehicle = e.encode(i.vehicle), i.remark = e.encode(i.remark), 
         i.isEncode = !0;
         var u = Date.parse(new Date());
-        u /= 1e3, s.d.viptime > u ? n.addInfo(i) : this.data.isPay ? (wx.showLoading({
-            title: "加载中..."
-        }), wx.request({
-            url: s.d.hostImgUrl + "info/userdel",
-            data: i,
-            success: function(t) {
-                if (t.data.data) {
-                    for (var a = 0; a < n.data.addArr.length; a++) n.data.departProvince == n.data.addArr[a] && n.setData({
-                        addIsPay: !0
-                    });
-                    for (var e = 0; e < n.data.addArr.length; e++) n.data.destProvince == n.data.addArr[e] && n.setData({
-                        addIsPay: !0
-                    });
-                    n.data.addIsPay && n.wxpay(i);
-                } else s.login();
+        u /= 1e3;
+        console.log('========s.d.viptime=', s.d.viptime);
+        console.log('========u=', u);
+        if (s.d.viptime > u) {
+            n.addInfo(i)
+        } else {
+            if (this.data.isPay) {
+                wx.showLoading({
+                    title: "加载中..."
+                });
+                wx.request({
+                    url: s.d.hostImgUrl + "info/userdel",
+                    data: i,
+                    success: function(t) {
+                        if (t.data.data) {
+                            for (var a = 0; a < n.data.addArr.length; a++) n.data.departProvince == n.data.addArr[a] && n.setData({
+                                addIsPay: !0
+                            });
+                            for (var e = 0; e < n.data.addArr.length; e++) n.data.destProvince == n.data.addArr[e] && n.setData({
+                                addIsPay: !0
+                            });
+                            n.data.addIsPay && n.wxpay(i);
+                        } else s.login();
+                    }
+                });
+            } else {
+                n.addInfo(i);
             }
-        })) : n.addInfo(i);
+        }
     },
     radioChange: function(t) {
         this.setData({
@@ -265,18 +278,19 @@ Page({
         });
     },
     addInfo: function(a) {
-        t.req("/api/info/add", a, (a)=> {
-            t.dddd(a, "infoAdd2 :");
+        utils.req("/api/info/add", a, (a)=> {
+            utils.dddd(a, "infoAdd2 :");
             wx.hideLoading();
             if (1 != a.status) {
-                return t.isError(a.msg, this);
+                return utils.isError(a.msg, this);
             }
             wx.redirectTo({
                 url: "/pages/info/index?id=" + a.info
             });
             var e = getCurrentPages();
             console.log(e);
-        }, "订单发布中..", "订单发布失败,请重试.."), t.clearError(this);
+        }, "订单发布中..", "订单发布失败,请重试..");
+        utils.clearError(this);
     },
     sexDeparture: function() {
         var t = this;
@@ -369,6 +383,7 @@ Page({
                 departure: r + ";;" + d + ";;" + o,
                 destValue: this.data.destValues
             });
+            console.log('this.data=',this.data);
         } else this.startAddressAnimation(!1, !this.data.destCondition);
     },
     initDataInfo: function() {
@@ -408,6 +423,11 @@ Page({
         } else {
             console.log('this.data=',this.data);
         }
+        if (start_h == 24 && start_m == 0) {
+            start_h = 0;
+            start_m = 0;
+            wdays.splice(0, 1);
+        }
         for (let o = start_h; o < 24; o++) {
             hour_infos.push(o);
         }
@@ -424,18 +444,35 @@ Page({
     bindsStartTime: function(t) {
         var a = t.detail.value, e = this.data.startTimeValues;
         this.data.cityData[a[1]];
-        if (a[0] != e[0]) 0 == a[0] ? e[0] = 0 : e[0] = a[0], e[1] = 0, e[2] = 0, this.initDataInfo(); else if (a[1] != e[1]) {
+        if (a[0] != e[0]) {
+            if (0 == a[0]) {
+                e[0] = 0;
+                e[1] = 0;
+                e[2] = 0;
+            } else {
+                e[0] = a[0];
+                e[1] = a[1];
+                e[2] = a[2];
+            }
+            this.initDataInfo(); 
+        }
+        else if (a[1] != e[1]) {
             e[2] = 0, e[1] = a[1];
             var s = 0;
             if (0 == a[0] && 0 == e[1]) {
                 var i = new Date().getMinutes();
                 s = 10 * (parseInt(i / 10) + 1);
             }
-            for (var n = [], r = s; r < 55; ) n.push(r), r += 10;
+            for (var n = [], r = s; r < 55; ) {
+                n.push(r);
+                r += 10;
+            }
             this.setData({
                 minutInfos: n
             });
-        } else e[2] = a[2];
+        } else {
+            e[2] = a[2];
+        }
         var d = this.data.dayInfos[e[0]], o = this.data.hourInfos[e[1]], u = this.data.minutInfos[e[2]];
         this.setData({
             startTimeValues: e,

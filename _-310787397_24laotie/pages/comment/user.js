@@ -7,7 +7,7 @@ Page({
     preImage: function() {
         wx.previewImage({
             current: "/img/shareqq.jpg",
-            urls: [ "https://192.168.22.45/public/ad/shareqq.jpg" ]
+            urls: [ "https://127.0.0.1/public/ad/shareqq.jpg" ]
         });
     }
 });

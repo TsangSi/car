@@ -11,7 +11,7 @@ var t;
 
 App((t = {
     d: {
-        hostImgUrl: "https://192.168.22.45/index.php/api/",
+        hostImgUrl: "https://127.0.0.1/index.php/api/",
         dyPrice: "",
         viptime: ""
     },
@@ -159,7 +159,7 @@ App((t = {
     userInfo: null,
     sk: null
 }), e(t, "serverConfig", {
-    ip_address: "https://192.168.22.45/index.php/"
+    ip_address: "https://127.0.0.1/index.php/"
 }), e(t, "wxpay", function(e, t, a) {
     var n = this, o = this;
     wx.login({
